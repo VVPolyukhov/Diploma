@@ -1,6 +1,8 @@
 import Head from "next/head";
 import styles from 'styles/test.module.scss'
 
+const hello  = () => {}
+
 export default function Home() {
   return (
     <>

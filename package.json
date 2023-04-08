@@ -6,7 +6,14 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prettier": "prettier --write src/",
+    "prepare": "husky install"
+  },
+  "lint-staged": {
+    "src/**/*.{js,ts,tsx}": [
+      "npm run prettier"
+    ]
   },
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
@@ -25,6 +32,9 @@
     "typescript": "5.0.3"
   },
   "devDependencies": {
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.1",
+    "prettier": "^2.8.7",
     "sass": "^1.60.0"
   }
 }
