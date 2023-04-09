@@ -1,6 +1,6 @@
 import { setCookie } from "cookies-next";
+import { api } from "store/api";
 import { setAccessToken } from "store/auth/slice";
-import { api } from "..";
 import {
   IAuthBaseRequestParams,
   IAuthBaseResponse,

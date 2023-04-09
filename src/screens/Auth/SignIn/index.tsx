@@ -2,7 +2,7 @@ import { Button, Form } from "antd";
 import EmailFormItem from "components/FormItem/Email";
 import PasswordFormItem from "components/FormItem/Password";
 import React from "react";
-import { useLoginMutation } from "store/api/auth";
+import { useLoginMutation } from "store/auth/api";
 
 interface IProps {}
 const SignIn: React.FC<IProps> = () => {

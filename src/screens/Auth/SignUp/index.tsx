@@ -4,7 +4,7 @@ import FirstNameFormItem from "components/FormItem/FirstName";
 import LastNameFormItem from "components/FormItem/LastName";
 import PasswordFormItem from "components/FormItem/Password";
 import React from "react";
-import { useRegisterMutation } from "store/api/auth";
+import { useRegisterMutation } from "store/auth/api";
 
 interface IProps {}
 const SignUp: React.FC<IProps> = () => {

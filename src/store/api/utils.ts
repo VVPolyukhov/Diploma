@@ -8,8 +8,8 @@ import { Mutex } from "async-mutex";
 import { getCookie, setCookie } from "cookies-next";
 import { getAccessToken } from "store/auth/selectors";
 import { setAccessToken } from "store/auth/slice";
+import { IAuthBaseResponse } from "store/auth/types";
 import { TRootState } from "store/types";
-import { IAuthBaseResponse } from "./auth/types";
 
 const mutex = new Mutex();
 
