@@ -1,3 +1,4 @@
+import { Button } from "antd";
 import Head from "next/head";
 import styles from 'styles/test.module.scss'
 
@@ -11,6 +12,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.root}>Hello world</main>
+      <Button>Button</Button>
     </>
   );
 }
