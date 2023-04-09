@@ -1,18 +1,20 @@
 import { configureStore } from "@reduxjs/toolkit";
 import { createWrapper } from "next-redux-wrapper";
 import { combineReducers } from "@reduxjs/toolkit";
-import { pokemonApi } from "./pokemonApi";
+import authReducer from "store/auth/slice";
 import { TAppStore } from "./types";
+import { api } from "./api";
 
 export const rootReducer = combineReducers({
-  [pokemonApi.reducerPath]: pokemonApi.reducer,
+  [api.reducerPath]: api.reducer,
+  auth: authReducer,
 });
 
 export const makeStore = () =>
   configureStore({
     reducer: rootReducer,
     middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(pokemonApi.middleware),
+      getDefaultMiddleware().concat(api.middleware),
   });
 
 export const wrapper = createWrapper<TAppStore>(makeStore);
