@@ -1,15 +1,22 @@
-import Document, { Html, Head, Main, NextScript } from "next/document";
+import Document, {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  DocumentContext,
+} from "next/document";
+import type { AppProps, AppType } from "next/app";
 import { createCache, extractStyle, StyleProvider } from "@ant-design/cssinjs";
 
 export default class ModifiedDocument extends Document {
   // Костыль для того, чтобы стили antd подгружались на сервере
-  static async getInitialProps(ctx: any) {
+  static async getInitialProps(ctx: DocumentContext) {
     const cache = createCache();
     const originalRenderPage = ctx.renderPage;
 
     ctx.renderPage = () =>
       originalRenderPage({
-        enhanceApp: (App: any) => (props: any) =>
+        enhanceApp: (App: AppType) => (props: AppProps) =>
           (
             <StyleProvider cache={cache}>
               <App {...props} />
@@ -34,7 +41,7 @@ export default class ModifiedDocument extends Document {
 
   render() {
     return (
-      <Html lang="en">
+      <Html lang="ru">
         <Head />
         <body>
           <Main />
