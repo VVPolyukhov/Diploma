@@ -9,7 +9,9 @@ import type { AppProps, AppType } from "next/app";
 import { createCache, extractStyle, StyleProvider } from "@ant-design/cssinjs";
 
 export default class ModifiedDocument extends Document {
-  // Костыль для того, чтобы стили antd подгружались на сервере
+  /**
+   * Костыль для того, чтобы стили antd подгружались на сервере
+   */
   static async getInitialProps(ctx: DocumentContext) {
     const cache = createCache();
     const originalRenderPage = ctx.renderPage;

@@ -26,7 +26,7 @@ export const prepareHeaders: FetchBaseQueryArgs["prepareHeaders"] = (
 };
 
 export const baseQuery = fetchBaseQuery({
-  baseUrl: "https://pokeapi.co/api/v1/",
+  baseUrl: "http://84.252.73.203:8080/api/v1/",
   prepareHeaders,
 });
 
