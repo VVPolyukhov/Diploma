@@ -1,7 +1,7 @@
 import { AlertProps as AntdAlertProps } from "antd/es/alert";
 
 // Вставляю типизацию сюда, так как этот интерфейс не импортируется из antd
-interface AntdErrorBoundaryProps {
+interface AntdAlertErrorBoundaryProps {
   message?: React.ReactNode;
   description?: React.ReactNode;
   children?: React.ReactNode;
@@ -17,4 +17,4 @@ export type TAlert = React.FC<IAlertProps> & {
 export interface IAlertProps extends AntdAlertProps {}
 
 /* Alert.ErrorBoundary */
-export interface IAlertErrorBoundaryProps extends AntdErrorBoundaryProps {}
+export interface IAlertErrorBoundaryProps extends AntdAlertErrorBoundaryProps {}
