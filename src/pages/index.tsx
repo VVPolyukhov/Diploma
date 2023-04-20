@@ -1,4 +1,6 @@
-import { Button } from "antd";
+import Button from "components/kit/Button";
+import Checkbox from "components/kit/Checkbox";
+import Typography from "components/kit/Typography";
 import Head from "next/head";
 import styles from 'styles/test.module.scss'
 
@@ -12,7 +14,10 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.root}>Hello world</main>
-      <Button>Button</Button>
+      <Button type="primary" size='small'>Button</Button>
+      <Checkbox />
+      <Typography>first</Typography>
+      <Typography.Text code={true}>second</Typography.Text>
     </>
   );
 }
