@@ -3,13 +3,13 @@ import { CheckableTagProps as AntdTagCheckableTagProps } from "antd/es/tag/Check
 
 // Специально определяю заново стандартный тип из Antd "TagProps" для предоставления
 // возможности дальнейшей кастомизации компонентов
-export type TTag = React.FC<ITagProps> & {
+export type TTag = React.FC<IInternalTagProps> & {
   CheckableTag: React.FC<ITagCheckableTagProps>;
 };
 
 /* Tag */
-type TTagPropsFromAntd = AntdTagProps & React.RefAttributes<HTMLElement>;
-export interface ITagProps extends TTagPropsFromAntd {}
+type TInternalTagPropsFromAntd = AntdTagProps & React.RefAttributes<HTMLElement>;
+export interface IInternalTagProps extends TInternalTagPropsFromAntd {}
 
 /* Tag.CheckableTag */
 export interface ITagCheckableTagProps extends AntdTagCheckableTagProps {}

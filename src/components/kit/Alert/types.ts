@@ -9,12 +9,12 @@ interface AntdAlertErrorBoundaryProps {
 
 // Специально определяю заново стандартный тип из Antd "AlertProps" для предоставления
 // возможности дальнейшей кастомизации компонентов
-export type TAlert = React.FC<IAlertProps> & {
+export type TAlert = React.FC<IInternalAlertProps> & {
   ErrorBoundary: React.FC<IAlertErrorBoundaryProps>;
 };
 
 /* Alert */
-export interface IAlertProps extends AntdAlertProps {}
+export interface IInternalAlertProps extends AntdAlertProps {}
 
 /* Alert.ErrorBoundary */
 export interface IAlertErrorBoundaryProps extends AntdAlertErrorBoundaryProps {}
