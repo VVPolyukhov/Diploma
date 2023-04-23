@@ -1,8 +1,14 @@
 import { Button } from "antd";
 import Head from "next/head";
+import { useEffect } from "react";
 import styles from 'styles/test.module.scss'
 
 export default function Home() {
+  
+  useEffect(() => {
+    console.log('window at page', window)
+  }, []);
+  
   return (
     <>
       <Head>
