@@ -20,7 +20,7 @@ const SignIn: React.FC<IProps> = () => {
       <EmailFormItem />
       <PasswordFormItem />
       <Form.Item>
-        <Button type="primary" htmlType="submit" loading={isLoading} block>
+        <Button type="primary" htmlType="submit" size="large" loading={isLoading} block>
           Войти
         </Button>
       </Form.Item>

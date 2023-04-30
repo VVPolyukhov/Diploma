@@ -25,13 +25,15 @@ const App: React.FC<AppProps> = ({ Component, ...rest }) => {
   const { store, props } = wrapper.useWrappedStore(rest);
 
   return (
-    <ReduxProvider store={store}>
-      <AccessProvider>
-        <Layout>
-          <Component {...props.pageProps} />
-        </Layout>
-      </AccessProvider>
-    </ReduxProvider>
+    <div id="app">
+      <ReduxProvider store={store}>
+        <AccessProvider>
+          <Layout>
+            <Component {...props.pageProps} />
+          </Layout>
+        </AccessProvider>
+      </ReduxProvider>
+    </div>
   );
 };
 

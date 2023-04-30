@@ -1,12 +1,17 @@
 * {
-  padding: 0;
   margin: 0;
+  padding: 0;
 }
 
 *,
 ::after,
 ::before {
   box-sizing: border-box;
+}
+
+/* Убрать полосу прокрутки для всей страницы */
+::-webkit-scrollbar {
+  width: 0;
 }
 
 html {
@@ -20,6 +25,11 @@ body {
   font-size: var(--font-size-regular);
   line-height: var(--line-height-base);
   background-color: var(--background-color-base);
+  min-height: 100vh;
+}
+
+#__next {
+  height: 100%;
 }
 
 :global {

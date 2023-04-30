@@ -1,14 +1,22 @@
-import { Form, Input } from "antd";
-import React from "react";
+import Form from 'components/kit/Form';
+import Input from 'components/kit/Input';
+import { IInternalInputProps } from 'components/kit/Input/types';
+import React from 'react';
+import { TCustomFormItem } from '../types';
 
-interface IProps {}
-const EmailFormItem: React.FC<IProps> = () => {
+interface IProps extends TCustomFormItem<IInternalInputProps> {}
+const EmailFormItem: React.FC<IProps> = ({ formItemProps = {}, internalComponentProps = {} }) => {
   return (
     <Form.Item
       name="email"
-      rules={[{ type: "email", required: true, message: "Введите электронную почту" }]}
+      rules={[
+        { type: 'email', message: 'Поле не соотвествует шаблону' },
+        { required: true, message: 'Введите логин' },
+        ...(formItemProps?.rules || []),
+      ]}
+      {...formItemProps}
     >
-      <Input placeholder="Электронная почта" />
+      <Input placeholder="Логин" size="large" {...internalComponentProps} />
     </Form.Item>
   );
 };

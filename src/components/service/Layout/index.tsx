@@ -1,49 +1,45 @@
-import { DesktopOutlined } from "@ant-design/icons";
-import { Layout, Menu } from "antd";
+import { Menu } from "antd";
+import Button from "components/kit/Button";
+import { ROUTES } from "constants/shared/routes";
+import Link from "next/link";
 import React, { PropsWithChildren } from "react";
-
-function getItem(
-  label: React.ReactNode,
-  key: React.Key,
-  icon?: React.ReactNode,
-  children?: any
-) {
-  return {
-    key,
-    icon,
-    children,
-    label,
-  };
-}
-
-const items = [
-  getItem("Option 1", "1", <DesktopOutlined />),
-  getItem("Option 2", "2", <DesktopOutlined />),
-  getItem("User", "sub1", <DesktopOutlined />, [
-    getItem("Tom", "3"),
-    getItem("Bill", "4"),
-    getItem("Alex", "5"),
-  ]),
-  getItem("Team", "sub2", <DesktopOutlined />, [
-    getItem("Team 1", "6"),
-    getItem("Team 2", "8"),
-  ]),
-  getItem("Files", "9", <DesktopOutlined />),
-];
+import styles from "./index.module.scss";
 
 interface IProps {}
-const { Header, Content, Sider } = Layout;
 const MainLayout: React.FC<PropsWithChildren<IProps>> = ({ children }) => {
   return (
-    <Layout style={{ minHeight: "100vh" }}>
-      <Sider theme="light" collapsible>
-        <Menu items={items} />
-      </Sider>
-      <Layout>
-        <Header />
-        <Content>{children}</Content>
-      </Layout>
-    </Layout>
+    <div className={styles.root}>
+      <header className={styles.header}>
+        <div className={styles.leftSide}>
+          <div
+            style={{
+              width: 120,
+              height: 31,
+              // margin: "16px 24px 16px 0",
+              background: "rgba(215, 155, 255, 0.2)",
+            }}
+          />
+          <Menu
+          className={styles.menu}
+            mode="horizontal"
+            defaultSelectedKeys={["2"]}
+            items={new Array(3).fill(null).map((_, index) => ({
+              key: String(index + 1),
+              label: `nav ${index + 1}`,
+            }))}
+          />
+        </div>
+        <Link href={ROUTES.AUTH_SIGN_IN.PATHNAME}>
+          <Button type="primary">Войти</Button>
+        </Link>
+      </header>
+
+      <div className={styles.content}>{children}</div>
+
+      {/* <Footer style={{ textAlign: "center" }}>
+        Ant Design ©2023 Created by Ant UED
+      </Footer> */}
+    </div>
   );
 };
 
