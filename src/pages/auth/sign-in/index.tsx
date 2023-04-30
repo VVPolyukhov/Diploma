@@ -1,5 +1,5 @@
+import SignIn from 'components/tree/Auth/SignIn'
 import { NextPage } from 'next'
-import SignIn from 'ui/Auth/SignIn'
 
 const SignInPage: NextPage = () => {
   return <SignIn />

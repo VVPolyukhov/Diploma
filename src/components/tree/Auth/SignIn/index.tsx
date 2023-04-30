@@ -1,4 +1,5 @@
-import { Button, Form } from "antd";
+import Button from "components/kit/Button";
+import Form from "components/kit/Form";
 import EmailFormItem from "components/shared/FormItem/Email";
 import PasswordFormItem from "components/shared/FormItem/Password";
 import React from "react";

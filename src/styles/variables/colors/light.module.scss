@@ -1,0 +1,72 @@
+// Текст
+$color-text: #21242e; // основной цвет текста
+$color-text-secondary: #7a8190; // цвет для подписей в интерфейсе
+$color-link: #5e69d0; // цвет ссылок
+
+// Иконки
+$color-icon: #7a8190; // основной цвет иконок в интерфейсе
+$color-icon-secondary: #5e69d0; // цвет второстепенных иконок
+
+// Основные цвета
+$color-primary: #5e69d0; // акцентный цвет в интерфейсе
+$color-secondary: #2e6eeb; // второстепенный цвет в интерфейсе
+$color-success: #63b59a; // цвет успешного выполнения
+$color-error: #fd6666; // цвет ошибки
+$color-warning: #ff8264; // цвет предупреждения
+$color-waiting: #f9cd4c; // цвет ожидания
+
+// Заливки и обводки
+$color-bg: #f2f4f5; // цвет заливки второстепенных блоков
+$color-border: #c6d0d6; // цвет обводки кнопок и полей
+$color-state-hover: #f7f8f9; // цвет выделения при наведении на элемент
+$color-overlay: rgba(55, 67, 72, 0.1); // тонирование фона под попапом
+
+#app[data-theme='light'] {
+  // Текст
+  --color-text: #{$color-text};
+  --color-text-secondary: #{$color-text-secondary};
+  --color-link: #{$color-link};
+
+  // Иконки
+  --color-icon: #{$color-icon};
+  --color-icon-secondary: #{$color-icon-secondary};
+
+  // Основные цвета
+  --color-primary: #{$color-primary};
+  --color-secondary: #{$color-secondary};
+  --color-success: #{$color-success};
+  --color-error: #{$color-error};
+  --color-warning: #{$color-warning};
+  --color-waiting: #{$color-waiting};
+
+  // Заливки и обводки
+  --color-bg: #{$color-bg};
+  --color-border: #{$color-border};
+  --color-state-hover: #{$color-state-hover};
+  --color-overlay: #{$color-overlay};
+}
+
+:export {
+  // Текст
+  colorText: $color-text;
+  colorTextSecondary: $color-text-secondary;
+  colorLink: $color-link;
+
+  // Иконки
+  colorIcon: $color-icon;
+  colorIconSecondary: $color-icon-secondary;
+
+  // Основные цвета
+  colorPrimary: $color-primary;
+  colorSecondary: $color-secondary;
+  colorSuccess: $color-success;
+  colorError: $color-error;
+  colorWarning: $color-warning;
+  colorWaiting: $color-waiting;
+
+  // Заливки и обводки
+  colorBg: $color-bg;
+  colorBorder: $color-border;
+  colorStateHover: $color-state-hover;
+  colorOverlay: $color-overlay;
+}

@@ -11,16 +11,18 @@ const MainLayout: React.FC<PropsWithChildren<IProps>> = ({ children }) => {
     <div className={styles.root}>
       <header className={styles.header}>
         <div className={styles.leftSide}>
-          <div
-            style={{
-              width: 120,
-              height: 31,
-              // margin: "16px 24px 16px 0",
-              background: "rgba(215, 155, 255, 0.2)",
-            }}
-          />
+          <Link href={ROUTES.HOME.PATHNAME}>
+            <div
+              style={{
+                width: 120,
+                height: 31,
+                // margin: "16px 24px 16px 0",
+                background: "rgba(215, 155, 255, 0.2)",
+              }}
+            />
+          </Link>
           <Menu
-          className={styles.menu}
+            className={styles.menu}
             mode="horizontal"
             defaultSelectedKeys={["2"]}
             items={new Array(3).fill(null).map((_, index) => ({

@@ -1,0 +1,9 @@
+$color-primary: #a42323;
+
+#app[data-theme='dark'] {
+  --color-primary: #{$color-primary};
+}
+
+:export {
+  colorPrimary: $color-primary;
+}

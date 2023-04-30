@@ -1,0 +1,21 @@
+@mixin body {
+  font-size: var(--font-size-base);
+  line-height: calc(var(--yr) * 5.5);
+}
+
+@mixin footnote {
+  font-size: calc(var(--yr) * 3.5);
+  line-height: calc(var(--yr) * 5);
+  color: var(--color-text-secondary);
+}
+
+@mixin control {
+  font-weight: 500;
+  @include body;
+}
+
+@mixin control-label {
+  font-size: calc(var(--yr) * 3.5);
+  line-height: calc(var(--yr) * 4);
+  color: var(--color-text-secondary);
+}

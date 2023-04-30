@@ -1,5 +1,5 @@
+import SignUp from 'components/tree/Auth/SignUp'
 import { NextPage } from 'next'
-import SignUp from 'ui/Auth/SignUp'
 
 const SignUpPage: NextPage = () => {
   return <SignUp />

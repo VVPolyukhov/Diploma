@@ -1,0 +1,21 @@
+// Вертикальный ритм
+$yr: 0.25rem;
+
+// Размеры шрифтов
+$font-size-base: 14px;
+
+#app {
+  // Вертикальный ритм
+  --yr: #{$yr};
+
+  // Размеры шрифтов
+  --font-size-base: #{$font-size-base};
+}
+
+:export {
+  // Вертикальный ритм
+  yr: $yr;
+
+  // Размеры шрифтов
+  fontSizeBase: $font-size-base;
+}

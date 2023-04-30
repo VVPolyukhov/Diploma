@@ -1,3 +1,5 @@
+@import 'styles/mixins/typography.scss';
+
 * {
   margin: 0;
   padding: 0;
@@ -17,14 +19,13 @@
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-size: var(--font-size-base);
-  background-color: var(--background-color-base);
+  @include body;
 }
 
-body {
-  font-size: var(--font-size-regular);
-  line-height: var(--line-height-base);
-  background-color: var(--background-color-base);
+// #app ≈ body
+#app {
+  color: var(--color-text);
+  background-color: var(--color-bg);
   min-height: 100vh;
 }
 
@@ -32,8 +33,28 @@ body {
   height: 100%;
 }
 
-:global {
-  .ant-form-item .ant-form-item-label {
-    text-align: start;
-  }
+// Typography
+h1 {
+  font-size: calc(var(--yr) * 9);
+  line-height: calc(var(--yr) * 11.5);
+}
+h2 {
+  font-size: calc(var(--yr) * 7);
+  line-height: calc(var(--yr) * 9);
+}
+h3 {
+  font-size: calc(var(--yr) * 5.5);
+  line-height: calc(var(--yr) * 8);
+}
+h4 {
+  font-size: calc(var(--yr) * 5);
+  line-height: calc(var(--yr) * 7);
+}
+h5 {
+  font-size: calc(var(--yr) * 4);
+  line-height: calc(var(--yr) * 5.5);
+}
+h6 {
+  font-size: calc(var(--yr) * 4);
+  line-height: calc(var(--yr) * 5.5);
 }

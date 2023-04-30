@@ -1,2 +1,5 @@
-@import './variables.scss';
 @import './global.scss';
+@import './variables/index.module.scss';
+@import './variables/colors/light.module.scss';
+@import './variables/colors/dark.module.scss';
+@import './mixins/typography.scss';
