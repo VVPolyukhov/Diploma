@@ -1,5 +1,5 @@
 import { NextPage } from 'next'
-import SignUp from 'screens/Auth/SignUp'
+import SignUp from 'ui/Auth/SignUp'
 
 const SignUpPage: NextPage = () => {
   return <SignUp />

@@ -1,6 +1,6 @@
 import { Button, Form } from "antd";
-import EmailFormItem from "components/FormItem/Email";
-import PasswordFormItem from "components/FormItem/Password";
+import EmailFormItem from "components/shared/FormItem/Email";
+import PasswordFormItem from "components/shared/FormItem/Password";
 import React from "react";
 import { useLoginMutation } from "store/auth/api";
 

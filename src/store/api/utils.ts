@@ -5,11 +5,14 @@ import {
 } from "@reduxjs/toolkit/dist/query/fetchBaseQuery";
 import { BaseQueryFn, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { Mutex } from "async-mutex";
-import { getCookie, setCookie } from "cookies-next";
 import { getAccessToken } from "store/auth/selectors";
 import { setAccessToken } from "store/auth/slice";
 import { IAuthBaseResponse } from "store/auth/types";
 import { TRootState } from "store/types";
+import {
+  getRefreshToken,
+  setRefreshToken,
+} from "utils/storages/cookie/refreshToken";
 
 const mutex = new Mutex();
 
@@ -44,7 +47,7 @@ export const baseQueryWithReauth: BaseQueryFn<
     if (!mutex.isLocked()) {
       const release = await mutex.acquire();
       try {
-        const refreshToken = getCookie("refreshToken");
+        const refreshToken = getRefreshToken();
 
         if (refreshToken) {
           const refreshResult = await baseQuery(
@@ -58,8 +61,7 @@ export const baseQueryWithReauth: BaseQueryFn<
             extraOptions
           );
           if (refreshResult.data) {
-            setCookie(
-              "refreshToken",
+            setRefreshToken(
               (refreshResult.data as IAuthBaseResponse).refreshToken
             );
             api.dispatch(
