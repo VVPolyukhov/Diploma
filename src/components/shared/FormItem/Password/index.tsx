@@ -9,6 +9,7 @@ const PasswordFormItem: React.FC<IProps> = ({ formItemProps = {}, internalCompon
   return (
     <Form.Item
       name="password"
+      label="Пароль"
       rules={[
         { required: true, message: 'Введите пароль' },
         {

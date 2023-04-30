@@ -9,6 +9,7 @@ const EmailFormItem: React.FC<IProps> = ({ formItemProps = {}, internalComponent
   return (
     <Form.Item
       name="email"
+      label="Логин"
       rules={[
         { type: 'email', message: 'Поле не соотвествует шаблону' },
         { required: true, message: 'Введите логин' },
