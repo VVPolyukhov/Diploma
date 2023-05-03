@@ -1,6 +1,7 @@
-import Button from "components/kit/Button";
 import Head from "next/head";
+import Image from "next/image";
 import styles from "./index.module.scss";
+import previewImage from "images/Designer.png";
 
 export default function Home() {
   return (
@@ -12,9 +13,21 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <section className={styles.preview}>
-        <h2>InCourse - образовательная платформа</h2>
-        <h1>Проверенные курсы от экспертов</h1>
-        <Button type="primary" size="large">Попробовать бесплатно</Button>
+        <div className={styles.leftSide}>
+          <div className={styles.tag}>
+            InCourse - образовательная платформа
+          </div>
+          <div className={styles.additionalText}>
+            <span className={styles.marked}>Курсы маркетига</span>
+            <br />
+            <span>в социальных сетях</span>
+          </div>
+        </div>
+        <div className={styles.rightSide}>
+          <div className={styles.image}>
+            <Image alt="" src={previewImage} fill />
+          </div>
+        </div>
       </section>
     </>
   );

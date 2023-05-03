@@ -1,4 +1,60 @@
+$paddings: 60px;
+$outer-paddings: 20px;
+$common-padding: calc(($paddings + $outer-paddings));
+
 .preview {
-    background-color: rgb(238, 172, 172);
-    height: calc(100vh - 94px);
+  //   background-color: rgba(134, 142, 150, 0.13);
+  height: calc(100vh - 132px);
+  //   margin: 0 calc(-1 * $common-padding);
+  //   padding: 50px $common-padding;
+  padding: 50px 0;
+
+  display: grid;
+  grid-template-columns: 1fr 0.8fr;
+  gap: 15px;
+  align-items: center;
+  justify-content: space-between;
+
+  .leftSide {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .tag {
+      padding: 8px 28px;
+      
+      background-color: var(--color-secondary);
+      color: white;
+      
+      width: fit-content;
+    //   border-radius: 20px;
+      border-top-right-radius: 20px;
+      border-bottom-right-radius: 20px;
+      font-weight: 500;
+    //   font-size: 18px;
+      
+    }
+
+    .additionalText {
+      font-weight: 500;
+      font-size: 64px;
+      margin-bottom: 40px;
+
+      .marked {
+        color: var(--color-primary);
+      }
+    }
+  }
+
+  .rightSide {
+    width: 100%;
+    height: 100%;
+
+    .image {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+  }
 }

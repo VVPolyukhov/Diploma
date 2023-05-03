@@ -1,27 +1,23 @@
 import { Menu } from "antd";
 import Button from "components/kit/Button";
 import { ROUTES } from "constants/shared/routes";
+import Image from "next/image";
 import Link from "next/link";
 import React, { PropsWithChildren } from "react";
 import styles from "./index.module.scss";
+import logo from "images/logo.png";
 
 interface IProps {}
 const MainLayout: React.FC<PropsWithChildren<IProps>> = ({ children }) => {
   return (
     <div className={styles.root}>
+      <div className={styles.oops}>.</div>
       <header className={styles.header}>
         <div className={styles.leftSide}>
           <Link href={ROUTES.HOME.PATHNAME}>
-            <div
-              style={{
-                width: 120,
-                height: 31,
-                // margin: "16px 24px 16px 0",
-                background: "rgba(215, 155, 255, 0.2)",
-              }}
-            />
+            <Image alt="Логотип" src={logo} height={90} width={160} />
           </Link>
-          <Menu
+          {/* <Menu
             className={styles.menu}
             mode="horizontal"
             defaultSelectedKeys={["2"]}
@@ -29,11 +25,18 @@ const MainLayout: React.FC<PropsWithChildren<IProps>> = ({ children }) => {
               key: String(index + 1),
               label: `nav ${index + 1}`,
             }))}
-          />
+          /> */}
         </div>
-        <Link href={ROUTES.AUTH_SIGN_IN.PATHNAME}>
-          <Button>Войти</Button>
-        </Link>
+        <div className={styles.rightSide}>
+          <Link href="/">Курсы</Link>
+          <Link href="/">О нас</Link>
+          <Link href="/">Преимущества</Link>
+          <Link href={ROUTES.AUTH_SIGN_IN.PATHNAME}>
+            <Button type="primary" size="large">
+              Учиться
+            </Button>
+          </Link>
+        </div>
       </header>
 
       <div className={styles.content}>{children}</div>
