@@ -1,5 +1,6 @@
-import { Button } from "antd";
+import Button from "components/kit/Button";
 import Head from "next/head";
+import styles from "./index.module.scss";
 
 export default function Home() {
   return (
@@ -10,8 +11,11 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main>Hello world</main>
-      
+      <section className={styles.preview}>
+        <h2>InCourse - образовательная платформа</h2>
+        <h1>Проверенные курсы от экспертов</h1>
+        <Button type="primary" size="large">Попробовать бесплатно</Button>
+      </section>
     </>
   );
 }

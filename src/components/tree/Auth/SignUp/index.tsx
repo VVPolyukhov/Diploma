@@ -19,18 +19,23 @@ const SignUp: React.FC<IProps> = () => {
   };
 
   return (
-      <Form form={form} onFinish={onFinish}>
-        <FirstNameFormItem />
-        <LastNameFormItem />
-        <EmailFormItem />
-        {/* TODO: Введите пароль повторно */}
-        <PasswordFormItem />
-        <Form.Item>
-          <Button type="primary" htmlType="submit" loading={isLoading} block>
-            Зарегистрироваться
-          </Button>
-        </Form.Item>
-      </Form>
+    <Form form={form} onFinish={onFinish}>
+      <FirstNameFormItem />
+      <LastNameFormItem />
+      <EmailFormItem />
+      {/* TODO: Введите пароль повторно */}
+      <PasswordFormItem />
+      <Form.Item>
+        <Button
+          type="primary"
+          htmlType="submit"
+          size="large"
+          loading={isLoading}
+        >
+          Зарегистрироваться
+        </Button>
+      </Form.Item>
+    </Form>
   );
 };
 

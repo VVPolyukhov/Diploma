@@ -32,7 +32,7 @@ const MainLayout: React.FC<PropsWithChildren<IProps>> = ({ children }) => {
           />
         </div>
         <Link href={ROUTES.AUTH_SIGN_IN.PATHNAME}>
-          <Button type="primary">Войти</Button>
+          <Button>Войти</Button>
         </Link>
       </header>
 
