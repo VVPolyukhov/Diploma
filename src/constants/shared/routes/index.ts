@@ -6,7 +6,15 @@ interface IRoute {
   TITLE: string;
 }
 
-type TRouteNames = "HOME" | "PRIVATE" | "AUTH_SIGN_IN" | "AUTH_SIGN_UP";
+type TRouteNames =
+  | "HOME"
+  | "PRIVATE"
+  | "AUTH_SIGN_IN"
+  | "AUTH_SIGN_UP"
+  | "COURSES"
+  | "EVENTS"
+  | "ARTICLES"
+  | "PROFILE";
 
 export const ROUTES: Record<TRouteNames, IRoute> = {
   HOME: {
@@ -25,6 +33,21 @@ export const ROUTES: Record<TRouteNames, IRoute> = {
     PATHNAME: "/private",
     TITLE: "Приватная страница",
   },
+  COURSES: {
+    PATHNAME: "/courses",
+    TITLE: "Курсы",
+  },
+  ARTICLES: {
+    PATHNAME: "/articles",
+    TITLE: "Статьи",
+  },
+  EVENTS: {
+    PATHNAME: "/events",
+    TITLE: "Нетворкинг",
+  },PROFILE: {
+    PATHNAME: "/profile",
+    TITLE: "Профиль пользователя"
+  }
 };
 
 /**

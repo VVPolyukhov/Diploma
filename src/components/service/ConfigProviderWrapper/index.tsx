@@ -16,7 +16,7 @@ const ConfigProviderWrapper: React.FC<PropsWithChildren<IProps>> = ({ children }
           colorWarningOutline: colors.colorWarning,
           colorErrorOutline: colors.colorError,
           colorBorderBg: colors.colorBorder,
-          colorBgBase: colors.colorBg,
+          // colorBgBase: colors.colorBg,
           fontFamily: font.style.fontFamily,
           fontSize: parseInt(scssVariables.fontSizeBase),
         },

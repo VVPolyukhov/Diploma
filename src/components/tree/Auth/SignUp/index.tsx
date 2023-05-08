@@ -31,6 +31,7 @@ const SignUp: React.FC<IProps> = () => {
           htmlType="submit"
           size="large"
           loading={isLoading}
+          block
         >
           Зарегистрироваться
         </Button>
