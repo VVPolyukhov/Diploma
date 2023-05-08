@@ -59,7 +59,7 @@ const MainLayout: React.FC<PropsWithChildren<IProps>> = ({ children }) => {
                 trigger={["click"]}
                 placement="bottomRight"
               >
-                <Avatar>T</Avatar>
+                <Avatar>Е</Avatar>
               </Dropdown>
             </>
           ) : (

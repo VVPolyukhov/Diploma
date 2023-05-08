@@ -1,0 +1,30 @@
+.root {
+  margin-bottom: 30px;
+  margin-top: 20px;
+
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+
+  .card {
+    background-color: #d5cef5;
+    border-radius: 12px;
+    padding: 10px 14px;
+
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    align-items: center;
+    justify-content: space-between;
+
+    .imageWrapper {
+      position: relative;
+      height: 350px;
+      width: 100%;
+    }
+
+    .title {
+      margin: 0;
+    }
+  }
+}
