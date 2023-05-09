@@ -42,8 +42,8 @@ $common-padding: calc(($paddings + $outer-paddings));
 }
 
 .aboutUs {
-  background-color: aliceblue;
-  height:100vh;
+  // background-color: aliceblue;
+  height: 100vh;
   margin: 0 calc(-1 * $common-padding);
   padding: 50px $common-padding;
   display: flex;
@@ -52,14 +52,14 @@ $common-padding: calc(($paddings + $outer-paddings));
   justify-content: space-between;
 
   .title {
-font-weight: 500;
-font-size: 52px;
+    font-weight: 500;
+    font-size: 52px;
   }
 
   .text {
-font-size: 20px;
-text-align: center;
-width: 60%;
+    font-size: 20px;
+    text-align: center;
+    width: 60%;
   }
 
   .cards {
@@ -70,25 +70,25 @@ width: 60%;
 
     .card {
       $card-side-paddings: 24px;
-      
+
       border: 1px solid var(--color-border);
       background-color: var(--color-bg);
 
       border-radius: 30px;
-      
+
       padding: 16px $card-side-paddings;
       padding-bottom: 26px;
-      
+
       .primaryTitle {
         background-color: var(--color-primary);
         color: white;
 
         margin-left: calc(-1 * $card-side-paddings);
-        
+
         padding: 4px 0;
         padding-left: $card-side-paddings;
         padding-right: 20px;
-        
+
         width: fit-content;
         margin-top: 14px;
         margin-bottom: 30px;

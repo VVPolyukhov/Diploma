@@ -11,14 +11,15 @@ $outer-paddings: 20px;
 
 
   .header {
-    background-color: white;
+    // background-color: white;
+    // border: 1px solid var(--color-border);
+
     // position: sticky;
     // top: 0;
     // z-index: 1;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    border: 1px solid var(--color-border);
     border-radius: 26px;
     
     margin: 0 $outer-paddings 20px;

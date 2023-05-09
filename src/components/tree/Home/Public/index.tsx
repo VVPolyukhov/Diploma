@@ -1,7 +1,7 @@
 import Image from "next/image";
-import styles from "./index.module.scss";
-import previewImage from "images/Designer.png";
 import CommonTag from "components/shared/CommonTag";
+import previewImage from "images/Designer.png";
+import styles from "./index.module.scss";
 
 interface IProps {}
 const PublicHome: React.FC<IProps> = () => {
@@ -11,7 +11,7 @@ const PublicHome: React.FC<IProps> = () => {
         <div className={styles.leftSide}>
           <CommonTag>InCourse - образовательная платформа</CommonTag>
           <div className={styles.additionalText}>
-            <span className={styles.marked}>Курсы маркетига</span>
+            <span className={styles.marked}>Курсы маркетинга</span>
             <br />
             <span>в социальных сетях</span>
           </div>
