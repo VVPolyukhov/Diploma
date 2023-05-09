@@ -40,14 +40,14 @@ $outer-paddings: 20px;
       align-items: center;
 
       a {
-        font-weight: 500;
-        font-style: 18px;
-        color: grey;
+        font-weight: 600;
+        font-style: 20px;
+        color: var(--color-primary);
         text-decoration: none !important;
       }
     }
 
-    .rightSide {
+    .profile {
       display: flex;
       column-gap: 10px;
       align-items: center;

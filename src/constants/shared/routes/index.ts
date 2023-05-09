@@ -14,7 +14,8 @@ type TRouteNames =
   | "COURSES"
   | "EVENTS"
   | "ARTICLES"
-  | "PROFILE";
+  | "PROFILE"
+  | "ADMIN_ARTICLES";
 
 export const ROUTES: Record<TRouteNames, IRoute> = {
   HOME: {
@@ -44,10 +45,15 @@ export const ROUTES: Record<TRouteNames, IRoute> = {
   EVENTS: {
     PATHNAME: "/events",
     TITLE: "Нетворкинг",
-  },PROFILE: {
+  },
+  PROFILE: {
     PATHNAME: "/profile",
-    TITLE: "Профиль пользователя"
-  }
+    TITLE: "Профиль пользователя",
+  },
+  ADMIN_ARTICLES: {
+    PATHNAME: "/admin/articles",
+    TITLE: "Административная панель | Статьи",
+  },
 };
 
 /**

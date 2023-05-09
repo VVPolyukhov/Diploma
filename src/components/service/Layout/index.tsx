@@ -1,4 +1,4 @@
-import { Avatar, Dropdown, MenuProps } from "antd";
+import { Avatar, Dropdown, Tag } from "antd";
 import Button from "components/kit/Button";
 import { ROUTES } from "constants/shared/routes";
 import Image from "next/image";
@@ -19,8 +19,9 @@ const MainLayout: React.FC<PropsWithChildren<IProps>> = ({ children }) => {
   const router = useRouter();
 
   const isAdmin = true;
+  const isAdminPathname = router.pathname.startsWith("/admin");
 
-  const items: MenuProps["items"] = [
+  const items = [
     {
       key: "profile",
       label: "Профиль",
@@ -30,14 +31,16 @@ const MainLayout: React.FC<PropsWithChildren<IProps>> = ({ children }) => {
     {
       type: "divider",
     },
-    isAdmin && {
+    {
       key: "admin",
       label: "Админка",
       icon: <CrownOutlined />,
-      // onClick: () => router.push(ROUTES.ADMIN.PATHNAME),
+      hidden: !isAdmin,
+      onClick: () => router.push(ROUTES.ADMIN_ARTICLES.PATHNAME),
     },
-    isAdmin && {
+    {
       type: "divider",
+      hidden: !isAdmin,
     },
     {
       key: "logout",
@@ -45,7 +48,7 @@ const MainLayout: React.FC<PropsWithChildren<IProps>> = ({ children }) => {
       icon: <LogoutOutlined />,
       onClick: () => logout(dispatch),
     },
-  ];
+  ].filter((el) => !el.hidden);
 
   return (
     <div className={styles.root}>
@@ -55,6 +58,7 @@ const MainLayout: React.FC<PropsWithChildren<IProps>> = ({ children }) => {
           <Link href={ROUTES.HOME.PATHNAME}>
             <Image alt="Логотип" src={logo} height={90} width={160} />
           </Link>
+          {isAdminPathname && <Tag>Админка</Tag>}
         </div>
         <nav className={styles.nav}>
           <Link href={isAuth ? ROUTES.COURSES.PATHNAME : ROUTES.HOME.PATHNAME}>
@@ -73,26 +77,26 @@ const MainLayout: React.FC<PropsWithChildren<IProps>> = ({ children }) => {
             </>
           )}
         </nav>
-        <div className={styles.rightSide}>
-          {isAuth ? (
-            <>
+        {isAuth ? (
+          <Dropdown
+            // @ts-ignore
+            menu={{ items }}
+            trigger={["hover"]}
+            placement="bottomRight"
+          >
+            <div className={styles.profile}>
               <span>Екатерина</span>
-              <Dropdown
-                menu={{ items }}
-                trigger={["click"]}
-                placement="bottomRight"
-              >
-                <Avatar icon={<UserOutlined />} />
-              </Dropdown>
-            </>
-          ) : (
-            <Link href={ROUTES.AUTH_SIGN_IN.PATHNAME}>
-              <Button type="primary" size="large">
-                Учиться
-              </Button>
-            </Link>
-          )}
-        </div>
+
+              <Avatar icon={<UserOutlined />} />
+            </div>
+          </Dropdown>
+        ) : (
+          <Link href={ROUTES.AUTH_SIGN_IN.PATHNAME}>
+            <Button type="primary" size="large">
+              Учиться
+            </Button>
+          </Link>
+        )}
       </header>
 
       <div className={styles.content}>{children}</div>
