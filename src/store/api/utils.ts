@@ -5,14 +5,13 @@ import {
 } from "@reduxjs/toolkit/dist/query/fetchBaseQuery";
 import { BaseQueryFn, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { Mutex } from "async-mutex";
-import { getAccessToken } from "store/auth/selectors";
-import { setAccessToken } from "store/auth/slice";
 import { IAuthBaseResponse } from "store/auth/types";
 import { TRootState } from "store/types";
 import {
   getRefreshToken,
   setRefreshToken,
 } from "utils/storages/cookie/refreshToken";
+import { getAccessToken, setAccessToken } from "utils/storages/local/accessToken";
 
 const mutex = new Mutex();
 
@@ -21,7 +20,7 @@ export const prepareHeaders: FetchBaseQueryArgs["prepareHeaders"] = (
   { getState }
 ) => {
   const state = getState() as TRootState;
-  const accessToken = getAccessToken(state);
+  const accessToken = getAccessToken() // getAccessToken(state);
   if (accessToken) {
     headers.set("Authorization", `Bearer ${accessToken}`);
   }

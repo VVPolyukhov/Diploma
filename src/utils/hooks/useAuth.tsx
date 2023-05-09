@@ -1,7 +1,8 @@
 import { useSelector } from "react-redux";
-import { getAccessToken } from "store/auth/selectors";
+import { getAccessToken } from "utils/storages/local/accessToken";
+// import { getAccessToken } from "store/auth/selectors";
 
 export const useAuth = () => {
-  const isAuth = useSelector(getAccessToken)
+  const isAuth = getAccessToken() //useSelector(getAccessToken)
   return isAuth;
 };
