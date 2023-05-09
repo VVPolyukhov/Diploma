@@ -23,7 +23,7 @@ const Profile: React.FC<IProps> = () => {
 
   return (
     <div className={styles.root}>
-      <Image className={styles.image} alt="Аватар" src={avatarImage} width={220} height={200} />
+      <Image className={styles.image} alt="Аватар" src={avatarImage} width={240} height={200} />
       <h1>Екатерина</h1>
       <div className={styles.specifications}>
         {specifications.map(({ key, value }) => (

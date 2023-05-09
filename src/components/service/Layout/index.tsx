@@ -6,7 +6,7 @@ import Link from "next/link";
 import React, { PropsWithChildren } from "react";
 import styles from "./index.module.scss";
 import logo from "images/logo.png";
-import { LogoutOutlined, UserOutlined } from "@ant-design/icons";
+import { CrownOutlined, LogoutOutlined, UserOutlined } from "@ant-design/icons";
 import { useAuth } from "utils/hooks/useAuth";
 import { logout } from "utils/shared/auth";
 import { useRouter } from "next/router";
@@ -18,6 +18,8 @@ const MainLayout: React.FC<PropsWithChildren<IProps>> = ({ children }) => {
   const isAuth = useAuth();
   const router = useRouter();
 
+  const isAdmin = true;
+
   const items: MenuProps["items"] = [
     {
       key: "profile",
@@ -26,6 +28,15 @@ const MainLayout: React.FC<PropsWithChildren<IProps>> = ({ children }) => {
       onClick: () => router.push(ROUTES.PROFILE.PATHNAME),
     },
     {
+      type: "divider",
+    },
+    isAdmin && {
+      key: "admin",
+      label: "Админка",
+      icon: <CrownOutlined />,
+      // onClick: () => router.push(ROUTES.ADMIN.PATHNAME),
+    },
+    isAdmin && {
       type: "divider",
     },
     {
@@ -45,7 +56,7 @@ const MainLayout: React.FC<PropsWithChildren<IProps>> = ({ children }) => {
             <Image alt="Логотип" src={logo} height={90} width={160} />
           </Link>
         </div>
-        <div className={styles.rightSide}>
+        <nav className={styles.nav}>
           <Link href={isAuth ? ROUTES.COURSES.PATHNAME : ROUTES.HOME.PATHNAME}>
             Курсы
           </Link>
@@ -54,24 +65,32 @@ const MainLayout: React.FC<PropsWithChildren<IProps>> = ({ children }) => {
               <Link href={ROUTES.ARTICLES.PATHNAME}>Статьи</Link>
               <Link href={ROUTES.EVENTS.PATHNAME}>Нетворкинг</Link>
               {/* <Link href={ROUTES.AUTHORS.PATHNAME}>Авторы</Link> */}
-              <Dropdown
-                menu={{ items }}
-                trigger={["click"]}
-                placement="bottomRight"
-              >
-                <Avatar>Е</Avatar>
-              </Dropdown>
             </>
           ) : (
             <>
               <Link href="/">О нас</Link>
               <Link href="/">Преимущества</Link>
-              <Link href={ROUTES.AUTH_SIGN_IN.PATHNAME}>
-                <Button type="primary" size="large">
-                  Учиться
-                </Button>
-              </Link>
             </>
+          )}
+        </nav>
+        <div className={styles.rightSide}>
+          {isAuth ? (
+            <>
+              <span>Екатерина</span>
+              <Dropdown
+                menu={{ items }}
+                trigger={["click"]}
+                placement="bottomRight"
+              >
+                <Avatar icon={<UserOutlined />} />
+              </Dropdown>
+            </>
+          ) : (
+            <Link href={ROUTES.AUTH_SIGN_IN.PATHNAME}>
+              <Button type="primary" size="large">
+                Учиться
+              </Button>
+            </Link>
           )}
         </div>
       </header>

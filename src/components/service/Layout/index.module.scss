@@ -9,7 +9,6 @@ $outer-paddings: 20px;
     visibility: hidden;
   }
 
-
   .header {
     // background-color: white;
     // border: 1px solid var(--color-border);
@@ -21,7 +20,7 @@ $outer-paddings: 20px;
     align-items: center;
     justify-content: space-between;
     border-radius: 26px;
-    
+
     margin: 0 $outer-paddings 20px;
 
     padding: 0 $paddings;
@@ -35,10 +34,22 @@ $outer-paddings: 20px;
         background-color: inherit;
       }
     }
+    .nav {
+      display: flex;
+      column-gap: 46px;
+      align-items: center;
+
+      a {
+        font-weight: 500;
+        font-style: 18px;
+        color: grey;
+        text-decoration: none !important;
+      }
+    }
 
     .rightSide {
       display: flex;
-      column-gap: 36px;
+      column-gap: 10px;
       align-items: center;
     }
   }
