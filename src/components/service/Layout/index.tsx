@@ -58,7 +58,7 @@ const MainLayout: React.FC<PropsWithChildren<IProps>> = ({ children }) => {
           <Link href={isAuth ? ROUTES.MAIN.PATHNAME : ROUTES.HOME.PATHNAME}>
             <Image alt="Логотип" src={logo} height={90} width={160} />
           </Link>
-          {isAdminPathname && <Tag style={{marginTop: '5px'}}>Админка</Tag>}
+          {isAdminPathname && <Tag style={{ marginTop: "5px" }}>Админка</Tag>}
         </div>
         <nav className={styles.nav}>
           {isAuth ? (
@@ -66,7 +66,9 @@ const MainLayout: React.FC<PropsWithChildren<IProps>> = ({ children }) => {
               <Link href={ROUTES.COURSES.PATHNAME}>Курсы</Link>
               <Link href={ROUTES.ARTICLES.PATHNAME}>Статьи</Link>
               <Link href={ROUTES.EVENTS.PATHNAME}>Нетворкинг</Link>
-              {/* <Link href={ROUTES.AUTHORS.PATHNAME}>Авторы</Link> */}
+              {isAdmin && isAdminPathname && (
+                <Link href={ROUTES.ADMIN_USERS.PATHNAME}>Пользователи</Link>
+              )}
             </>
           ) : (
             <>

@@ -16,7 +16,8 @@ type TRouteNames =
   | "ARTICLES"
   | "PROFILE"
   | "ADMIN_ARTICLES"
-  | "MAIN";
+  | "MAIN"
+  | "ADMIN_USERS";
 
 export const ROUTES: Record<TRouteNames, IRoute> = {
   HOME: {
@@ -24,8 +25,8 @@ export const ROUTES: Record<TRouteNames, IRoute> = {
     TITLE: "Главная страница",
   },
   MAIN: {
-    PATHNAME: '/main',
-    TITLE: "Главная страница"
+    PATHNAME: "/main",
+    TITLE: "Главная страница",
   },
   AUTH_SIGN_IN: {
     PATHNAME: "/auth/sign-in",
@@ -58,6 +59,10 @@ export const ROUTES: Record<TRouteNames, IRoute> = {
   ADMIN_ARTICLES: {
     PATHNAME: "/admin/articles",
     TITLE: "Административная панель | Статьи",
+  },
+  ADMIN_USERS: {
+    PATHNAME: "/admin/users",
+    TITLE: "Административная панель | Пользователи",
   },
 };
 

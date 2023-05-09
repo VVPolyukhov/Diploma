@@ -1,8 +1,12 @@
-import React from 'react';
+import React from "react";
 
 interface IProps {}
 const ArticlesAdmin: React.FC<IProps> = () => {
-  return <>ArticlesAdmin</>
-}
+  return (
+    <>
+      <h2>Статьи</h2>
+    </>
+  );
+};
 
-export default ArticlesAdmin
+export default ArticlesAdmin;
