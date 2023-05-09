@@ -15,12 +15,17 @@ type TRouteNames =
   | "EVENTS"
   | "ARTICLES"
   | "PROFILE"
-  | "ADMIN_ARTICLES";
+  | "ADMIN_ARTICLES"
+  | "MAIN";
 
 export const ROUTES: Record<TRouteNames, IRoute> = {
   HOME: {
     PATHNAME: "/",
     TITLE: "Главная страница",
+  },
+  MAIN: {
+    PATHNAME: '/main',
+    TITLE: "Главная страница"
   },
   AUTH_SIGN_IN: {
     PATHNAME: "/auth/sign-in",

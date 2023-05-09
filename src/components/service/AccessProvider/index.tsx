@@ -2,6 +2,7 @@ import { ROUTES } from "constants/shared/routes";
 import { useRouter } from "next/router";
 import React, { PropsWithChildren, useEffect } from "react";
 import { useUpdateAccessTokenMutation } from "store/auth/api";
+import { useAuth } from "utils/hooks/useAuth";
 import {
   isPrivatePathname,
   isPublicPathname,
@@ -14,6 +15,7 @@ interface IProps {}
 // @ts-ignore
 const AccessProvider: React.FC<PropsWithChildren<IProps>> = ({ children }) => {
   const refreshToken = getRefreshToken();
+  const isAuth = useAuth()
 
   const { pathname, ...router } = useRouter();
 
@@ -38,7 +40,7 @@ const AccessProvider: React.FC<PropsWithChildren<IProps>> = ({ children }) => {
     return <>Loading...</>;
   }
 
-  if (isSuccess) {
+  if (isSuccess || isAuth) {
     /**
      * Выключение серверного рендеринга для приватных страниц
      */

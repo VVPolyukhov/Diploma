@@ -8,5 +8,5 @@ import { deleteRefreshToken } from "utils/storages/cookie/refreshToken";
 export const logout = (dispatch: Dispatch<AnyAction>) => {
   deleteRefreshToken();
   dispatch(setAccessToken(null));
-  Router.replace(ROUTES.HOME.PATHNAME);
+  Router.replace(ROUTES.AUTH_SIGN_IN.PATHNAME);
 };

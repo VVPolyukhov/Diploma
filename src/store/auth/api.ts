@@ -23,7 +23,7 @@ export const authApi = api.injectEndpoints({
           const result = await api.queryFulfilled;
           setRefreshToken(result.data.refreshToken);
           api.dispatch(setAccessToken(result.data.accessToken));
-          Router.replace(ROUTES.HOME.PATHNAME);
+          Router.replace(ROUTES.MAIN.PATHNAME);
         } catch (error) {}
       },
     }),
@@ -38,7 +38,7 @@ export const authApi = api.injectEndpoints({
           const result = await api.queryFulfilled;
           setRefreshToken(result.data.refreshToken);
           api.dispatch(setAccessToken(result.data.accessToken));
-          Router.replace(ROUTES.HOME.PATHNAME);
+          Router.replace(ROUTES.MAIN.PATHNAME);
         } catch (error) {}
       },
     }),

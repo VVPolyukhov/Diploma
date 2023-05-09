@@ -55,25 +55,23 @@ const MainLayout: React.FC<PropsWithChildren<IProps>> = ({ children }) => {
       <div className={styles.oops}>.</div>
       <header className={styles.header}>
         <div className={styles.leftSide}>
-          <Link href={ROUTES.HOME.PATHNAME}>
+          <Link href={isAuth ? ROUTES.MAIN.PATHNAME : ROUTES.HOME.PATHNAME}>
             <Image alt="Логотип" src={logo} height={90} width={160} />
           </Link>
-          {isAdminPathname && <Tag>Админка</Tag>}
+          {isAdminPathname && <Tag style={{marginTop: '5px'}}>Админка</Tag>}
         </div>
         <nav className={styles.nav}>
-          <Link href={isAuth ? ROUTES.COURSES.PATHNAME : ROUTES.HOME.PATHNAME}>
-            Курсы
-          </Link>
           {isAuth ? (
             <>
+              <Link href={ROUTES.COURSES.PATHNAME}>Курсы</Link>
               <Link href={ROUTES.ARTICLES.PATHNAME}>Статьи</Link>
               <Link href={ROUTES.EVENTS.PATHNAME}>Нетворкинг</Link>
               {/* <Link href={ROUTES.AUTHORS.PATHNAME}>Авторы</Link> */}
             </>
           ) : (
             <>
-              <Link href="/">О нас</Link>
-              <Link href="/">Преимущества</Link>
+              {/* <Link href="#aboutUs">О нас</Link> */}
+              {/* <Link href="#advantages">Преимущества</Link> */}
             </>
           )}
         </nav>

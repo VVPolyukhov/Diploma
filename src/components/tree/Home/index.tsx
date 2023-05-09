@@ -22,7 +22,7 @@ const PublicHome: React.FC<IProps> = () => {
           </div>
         </div>
       </section>
-      <section className={styles.aboutUs}>
+      <section className={styles.aboutUs} id="aboutUs">
         <h1 className={styles.title}>О нас</h1>
         <span className={styles.text}>
           InCourse - образовательная платформа с самыми современными курсами
