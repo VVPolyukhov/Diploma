@@ -1,4 +1,5 @@
 import { Button, Table, Tag, Tooltip } from "antd";
+import Header from "components/shared/Header";
 import React, { useState } from "react";
 import CouresesAppointmentModal from "./CoursesAppointment";
 import styles from "./index.module.scss";
@@ -43,7 +44,7 @@ const UsersAdmin: React.FC<IProps> = () => {
     },
   ];
 
-  const dataIndex = [
+  const dataSource = [
     {
       key: 1,
       name: "Сергей",
@@ -81,21 +82,26 @@ const UsersAdmin: React.FC<IProps> = () => {
 
   return (
     <>
-      <CouresesAppointmentModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
-      <div className={styles.header}>
-        <h2>Пользователи</h2>
-        {selectedRowKeys.length ? (
-          renderButton()
-        ) : (
-          <Tooltip title="Для назначения курса необходимо выбрать пользователей">
-            {renderButton()}
-          </Tooltip>
-        )}
-      </div>
+      <CouresesAppointmentModal
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+      />
+      <Header
+        title="Пользователи"
+        additionalContent={
+          selectedRowKeys.length ? (
+            renderButton()
+          ) : (
+            <Tooltip title="Для назначения курса необходимо выбрать пользователей">
+              {renderButton()}
+            </Tooltip>
+          )
+        }
+      />
       <Table
         rowSelection={rowSelection}
         columns={columns}
-        dataSource={dataIndex}
+        dataSource={dataSource}
         pagination={false}
       />
     </>

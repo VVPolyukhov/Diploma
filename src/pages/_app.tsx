@@ -10,9 +10,9 @@ import { font } from "styles/font";
 import Head from "next/head";
 
 // draft-js
-import "components/tree/Admin/Articles/Editor/css/example.css";
-import "components/tree/Admin/Articles/Editor/css/draft.css";
-import "components/tree/Admin/Articles/Editor/css/rich-editor.css";
+import "components/tree/Admin/Articles/Item/Editor/css/example.css";
+import "components/tree/Admin/Articles/Item/Editor/css/draft.css";
+import "components/tree/Admin/Articles/Item/Editor/css/rich-editor.css";
 
 /**
  * При первой загрузке приложения необходимо получить accessToken, если есть refreshToken

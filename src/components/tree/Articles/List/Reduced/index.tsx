@@ -6,12 +6,12 @@ const ReducedArticlesList: React.FC<IProps> = () => {
   const items = [
     {
       id: 1,
-      title: "AMF. Что это такое и с чем его едят?",
+      title: "Как создать востребованный продукт?",
       background: "#D5E8FF",
     },
     {
       id: 2,
-      title: "Маркетинг. Будущее сферы",
+      title: "Продажи на высокий чек",
       background: "#D5E8FF",
     },
   ];
