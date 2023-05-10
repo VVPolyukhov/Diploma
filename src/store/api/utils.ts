@@ -11,7 +11,10 @@ import {
   getRefreshToken,
   setRefreshToken,
 } from "utils/storages/cookie/refreshToken";
-import { getAccessToken, setAccessToken } from "utils/storages/local/accessToken";
+import {
+  getAccessToken,
+  setAccessToken,
+} from "utils/storages/local/accessToken";
 
 const mutex = new Mutex();
 
@@ -20,7 +23,7 @@ export const prepareHeaders: FetchBaseQueryArgs["prepareHeaders"] = (
   { getState }
 ) => {
   const state = getState() as TRootState;
-  const accessToken = getAccessToken() // getAccessToken(state);
+  const accessToken = getAccessToken(); // getAccessToken(state);
   if (accessToken) {
     headers.set("Authorization", `Bearer ${accessToken}`);
   }
@@ -28,7 +31,9 @@ export const prepareHeaders: FetchBaseQueryArgs["prepareHeaders"] = (
 };
 
 export const baseQuery = fetchBaseQuery({
-  baseUrl: "https://84.252.73.203:8080/api/v1/",
+  baseUrl: `http${
+    process.env.NODE_ENV === "development" ? "" : "s"
+  }://84.252.73.203:8080/api/v1/`,
   prepareHeaders,
 });
 
