@@ -15,7 +15,6 @@ const SignIn: React.FC<IProps> = () => {
   const [login, { isLoading }] = useLoginMutation();
 
   const onFinish = (values: any) => {
-    console.log("values", values);
     login(values);
   };
 

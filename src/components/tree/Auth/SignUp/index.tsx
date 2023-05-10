@@ -14,7 +14,6 @@ const SignUp: React.FC<IProps> = () => {
   const [register, { isLoading }] = useRegisterMutation();
 
   const onFinish = (values: any) => {
-    console.log("values", values);
     register(values);
   };
 
