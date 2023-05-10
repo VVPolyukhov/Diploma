@@ -8,9 +8,11 @@ interface IProps {}
 const PrivateHome: React.FC<IProps> = () => {
   return (
     <div className={styles.root}>
+      {/* TODO: Collapse antd */}
       <CommonTag>Статьи</CommonTag>
       <ReducedArticlesList />
       
+      {/* TODO: Collapse antd */}
       <CommonTag>Курсы</CommonTag>
       <ReducedCoursesList />
     </div>

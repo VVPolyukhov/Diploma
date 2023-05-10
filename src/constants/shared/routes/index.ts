@@ -16,6 +16,8 @@ type TRouteNames =
   | "ARTICLES"
   | "PROFILE"
   | "ADMIN_ARTICLES"
+  | "ADMIN_ARTICLES_CREATE"
+  // | "ADMIN_ARTICLES_VIEW"
   | "MAIN"
   | "ADMIN_USERS";
 
@@ -59,6 +61,10 @@ export const ROUTES: Record<TRouteNames, IRoute> = {
   ADMIN_ARTICLES: {
     PATHNAME: "/admin/articles",
     TITLE: "Административная панель | Статьи",
+  },
+  ADMIN_ARTICLES_CREATE: {
+    PATHNAME: "/admin/articles/create",
+    TITLE: "Административная панель | Создание статьи",
   },
   ADMIN_USERS: {
     PATHNAME: "/admin/users",
