@@ -27,6 +27,8 @@ import "components/tree/Admin/Articles/Item/Editor/css/rich-editor.css";
  * Итог: Авторизация всегда выполняется на стороне клиента
  */
 
+
+// !!! TODO: Баг: Если зайти на страницу / и быть авторизованным, то будут ошибки гидрации падать
 const App: React.FC<AppProps> = ({ Component, ...rest }) => {
   const { store, props } = wrapper.useWrappedStore(rest);
 
