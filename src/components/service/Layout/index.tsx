@@ -58,16 +58,26 @@ const MainLayout: React.FC<PropsWithChildren<IProps>> = ({ children }) => {
           <Link href={isAuth ? ROUTES.MAIN.PATHNAME : ROUTES.HOME.PATHNAME}>
             <Image alt="Логотип" src={logo} height={90} width={160} />
           </Link>
-          {isAdminPathname && <Tag style={{ marginTop: "5px" }} color="geekblue">Админка</Tag>}
+          {isAdminPathname && (
+            <Tag style={{ marginTop: "5px" }} color="geekblue">
+              Админка
+            </Tag>
+          )}
         </div>
         <nav className={styles.nav}>
           {isAuth ? (
             <>
-              <Link href={ROUTES.COURSES.PATHNAME}>Курсы</Link>
-              <Link href={ROUTES.ARTICLES.PATHNAME}>Статьи</Link>
-              <Link href={ROUTES.EVENTS.PATHNAME}>Нетворкинг</Link>
-              {isAdmin && isAdminPathname && (
-                <Link href={ROUTES.ADMIN_USERS.PATHNAME}>Пользователи</Link>
+              {isAdminPathname ? (
+                <>
+                  <Link href={ROUTES.ADMIN_ARTICLES.PATHNAME}>Статьи</Link>
+                  <Link href={ROUTES.ADMIN_USERS.PATHNAME}>Пользователи</Link>
+                </>
+              ) : (
+                <>
+                  <Link href={ROUTES.COURSES.PATHNAME}>Курсы</Link>
+                  <Link href={ROUTES.ARTICLES.PATHNAME}>Статьи</Link>
+                  <Link href={ROUTES.EVENTS.PATHNAME}>Нетворкинг</Link>
+                </>
               )}
             </>
           ) : (
