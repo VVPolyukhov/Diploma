@@ -1,9 +1,11 @@
 import { Button, Table, Tag, Tooltip } from "antd";
 import React, { useState } from "react";
+import CouresesAppointmentModal from "./CoursesAppointment";
 import styles from "./index.module.scss";
 
 interface IProps {}
 const UsersAdmin: React.FC<IProps> = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
 
   const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
@@ -70,7 +72,7 @@ const UsersAdmin: React.FC<IProps> = () => {
       <Button
         type="primary"
         disabled={!selectedRowKeys.length}
-        onClick={() => {}}
+        onClick={() => setIsModalOpen(true)}
       >
         Назначить курс
       </Button>
@@ -79,6 +81,7 @@ const UsersAdmin: React.FC<IProps> = () => {
 
   return (
     <>
+      <CouresesAppointmentModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
       <div className={styles.header}>
         <h2>Пользователи</h2>
         {selectedRowKeys.length ? (

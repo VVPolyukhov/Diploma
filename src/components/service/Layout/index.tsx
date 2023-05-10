@@ -58,7 +58,7 @@ const MainLayout: React.FC<PropsWithChildren<IProps>> = ({ children }) => {
           <Link href={isAuth ? ROUTES.MAIN.PATHNAME : ROUTES.HOME.PATHNAME}>
             <Image alt="Логотип" src={logo} height={90} width={160} />
           </Link>
-          {isAdminPathname && <Tag style={{ marginTop: "5px" }}>Админка</Tag>}
+          {isAdminPathname && <Tag style={{ marginTop: "5px" }} color="geekblue">Админка</Tag>}
         </div>
         <nav className={styles.nav}>
           {isAuth ? (
