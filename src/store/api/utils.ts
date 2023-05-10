@@ -28,7 +28,7 @@ export const prepareHeaders: FetchBaseQueryArgs["prepareHeaders"] = (
 };
 
 export const baseQuery = fetchBaseQuery({
-  baseUrl: "http://84.252.73.203:8080/api/v1/",
+  baseUrl: "https://84.252.73.203:8080/api/v1/",
   prepareHeaders,
 });
 
