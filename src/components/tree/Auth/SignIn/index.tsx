@@ -8,13 +8,15 @@ import React from "react";
 import { useLoginMutation } from "store/auth/api";
 import styles from "./index.module.scss";
 
+type ELoginForm = any
+
 interface IProps {}
 const SignIn: React.FC<IProps> = () => {
-  const [form] = Form.useForm();
+  const [form] = Form.useForm<ELoginForm>();
 
   const [login, { isLoading }] = useLoginMutation();
 
-  const onFinish = (values: any) => {
+  const onFinish = (values: ELoginForm) => {
     login(values);
   };
 

@@ -1,14 +1,19 @@
+// @ts-nocheck
 import { DeleteOutlined } from "@ant-design/icons";
 import { Button, Table, Tag } from "antd";
 import Header from "components/shared/Header";
 import { ROUTES } from "constants/shared/routes";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
-import styles from "./index.module.scss";
+import { useDispatch, useSelector } from "react-redux";
+import { getArticles } from "./help";
 
 interface IProps {}
 const ArticlesListAdmin: React.FC<IProps> = () => {
   const router = useRouter();
+  const dispatch = useDispatch()
+
+  const dataSource = useSelector(getArticles)
 
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
 
@@ -25,6 +30,10 @@ const ArticlesListAdmin: React.FC<IProps> = () => {
       Table.SELECTION_NONE,
     ],
   };
+
+  const onDelete = () => {
+    dispatch(deleteArticles(selectedRowKeys))
+  }
 
   const columns = [
     {
@@ -47,22 +56,6 @@ const ArticlesListAdmin: React.FC<IProps> = () => {
     },
   ];
 
-  const dataSource = [
-    {
-      key: 1,
-      name: "Как создать востребованный продукт?",
-      author: "Павлов Александр",
-      creation_date: "02.05.2023",
-      tags: ["Продукт"],
-    },
-    {
-      key: 2,
-      name: "Продажи на высокий чек",
-      author: "Смирнова Екатерина",
-      creation_date: "01.05.2023",
-      tags: ["Продажи", "Взаимодействие с клиентами"],
-    },
-  ]
 
   return (
     <>
@@ -70,7 +63,7 @@ const ArticlesListAdmin: React.FC<IProps> = () => {
         title="Статьи"
         additionalContent={
           <>
-          <Button icon={<DeleteOutlined />} danger disabled={!selectedRowKeys.length} />
+          <Button icon={<DeleteOutlined />} danger disabled={!selectedRowKeys.length} onClick={onDelete} />
           <Button
             type="primary"
             onClick={() => router.push(ROUTES.ADMIN_ARTICLES_CREATE.PATHNAME)}

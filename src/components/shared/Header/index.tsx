@@ -1,7 +1,7 @@
-import { ArrowLeftOutlined } from "@ant-design/icons";
-import { Button } from "antd";
-import { useRouter } from "next/router";
 import React from "react";
+import { Button } from "antd";
+import { ArrowLeftOutlined } from "@ant-design/icons";
+import { useRouter } from "next/router";
 import styles from "./index.module.scss";
 
 interface IProps {

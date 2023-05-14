@@ -1,14 +1,16 @@
+// @ts-nocheck
 import React from "react";
 import { Editor, EditorState, RichUtils, getDefaultKeyBinding } from "draft-js";
 
 const { useState, useRef, useCallback } = React;
+let className = "RichEditor-editor";
+const rootClassname = 'RichEditor-root'
 
-function RichEditor(props: any) {
+const RichEditor: React.FC = () => {
   const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const editor = useRef(null);
   
   const focus = () => {
-    // @ts-ignore
     if (editor.current) editor.current.focus();
   };
 
@@ -43,10 +45,7 @@ function RichEditor(props: any) {
     [editorState, setEditorState]
   );
 
-  // If the user changes block type before entering any text, we can
-  // either style the placeholder or hide it. Let's just hide it now.
-  let className = "RichEditor-editor";
-  var contentState = editorState.getCurrentContent();
+  const contentState = editorState.getCurrentContent();
 
   if (!contentState.hasText()) {
     if (contentState.getBlockMap().first().getType() !== "unstyled") {
@@ -55,7 +54,7 @@ function RichEditor(props: any) {
   }
 
   return (
-    <div className="RichEditor-root">
+    <div className={rootClassname}>
       <BlockStyleControls
         editorState={editorState}
         onToggle={(blockType: string) => {
@@ -75,7 +74,6 @@ function RichEditor(props: any) {
       />
       <div className={className} onClick={focus}>
         <Editor
-          // @ts-ignore
           blockStyleFn={getBlockStyle}
           customStyleMap={styleMap}
           editorState={editorState}
@@ -84,7 +82,7 @@ function RichEditor(props: any) {
           onChange={setEditorState}
           placeholder="Начните писать статью..."
           ref={editor}
-          spellCheck={true}
+          spellCheck
         />
       </div>
     </div>
