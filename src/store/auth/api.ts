@@ -1,7 +1,6 @@
 import { ROUTES } from "constants/shared/routes";
 import Router from "next/router";
 import { api } from "store/api";
-// import { setAccessToken } from "store/auth/slice";
 import { setRefreshToken } from "utils/storages/cookie/refreshToken";
 import { setAccessToken } from "utils/storages/local/accessToken";
 import {
@@ -23,7 +22,6 @@ export const authApi = api.injectEndpoints({
         try {
           const result = await api.queryFulfilled;
           setRefreshToken(result.data.refreshToken);
-          // api.dispatch(setAccessToken(result.data.accessToken));
           setAccessToken(result.data.accessToken)
           Router.replace(ROUTES.MAIN.PATHNAME);
         } catch (error) {}
@@ -39,7 +37,6 @@ export const authApi = api.injectEndpoints({
         try {
           const result = await api.queryFulfilled;
           setRefreshToken(result.data.refreshToken);
-          // api.dispatch(setAccessToken(result.data.accessToken));
           setAccessToken(result.data.accessToken)
           Router.replace(ROUTES.MAIN.PATHNAME);
         } catch (error) {}
@@ -58,7 +55,6 @@ export const authApi = api.injectEndpoints({
         try {
           const result = await api.queryFulfilled;
           setRefreshToken(result.data.refreshToken);
-          // api.dispatch(setAccessToken(result.data.accessToken));
           setAccessToken(result.data.accessToken)
         } catch (error) {
           Router.replace(ROUTES.AUTH_SIGN_IN.PATHNAME);

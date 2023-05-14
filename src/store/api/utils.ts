@@ -37,7 +37,6 @@ export const baseQuery = fetchBaseQuery({
   prepareHeaders,
 });
 
-// Ссылка на источник: https://redux-toolkit.js.org/rtk-query/usage/customizing-queries#preventing-multiple-unauthorized-errors
 export const baseQueryWithReauth: BaseQueryFn<
   string | FetchArgs,
   any,
