@@ -6,7 +6,7 @@ import React from "react";
 import styles from "./index.module.scss";
 
 interface IProps {
-  mode: TComponentModes;
+  mode?: TComponentModes;
 }
 const AdminEventsItem: React.FC<IProps> = ({ mode = "edit" }) => {
   const onFinish = (values: any) => {
