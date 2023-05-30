@@ -27,7 +27,7 @@ const PrivateHome: React.FC<IProps> = () => {
             <h3>6 июня в 18:00 по МСК </h3>
             <div>
               <h5>Осталось 10/20 мест</h5>
-              <Button type="primary" className={styles.btn}>
+              <Button size="large" type="primary" className={styles.btn}>
                 Зарегистрироваться
               </Button>
             </div>

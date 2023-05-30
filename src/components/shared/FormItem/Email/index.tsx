@@ -11,13 +11,17 @@ const EmailFormItem: React.FC<IProps> = ({ formItemProps = {}, internalComponent
       name="email"
       label="Логин"
       rules={[
-        { type: 'email', message: 'Поле не соотвествует шаблону' },
-        { required: true, message: 'Введите логин' },
+        { type: "email", message: "Поле не соотвествует шаблону" },
+        { required: true, message: "Введите логин" },
         ...(formItemProps?.rules || []),
       ]}
       {...formItemProps}
     >
-      <Input placeholder="Логин" size="large" {...internalComponentProps} />
+      <Input
+        placeholder="Укажите логин"
+        size="large"
+        {...internalComponentProps}
+      />
     </Form.Item>
   );
 };

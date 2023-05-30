@@ -9,7 +9,7 @@ const FirstNameFormItem: React.FC<IProps> = () => {
       label="Имя"
       rules={[{ required: true, message: "Введите имя" }]}
     >
-      <Input placeholder="Имя" size="large" />
+      <Input placeholder="Укажите имя" size="large" />
     </Form.Item>
   );
 };
