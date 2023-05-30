@@ -1,4 +1,5 @@
-import { Button, Table, Tag, Tooltip } from "antd";
+import {  Table, Tag, Tooltip } from "antd";
+import Button from "components/kit/Button";
 import Header from "components/shared/Header";
 import React, { useState } from "react";
 import CouresesAppointmentModal from "./CoursesAppointment";

@@ -70,6 +70,7 @@ const MainLayout: React.FC<PropsWithChildren<IProps>> = ({ children }) => {
               {isAdminPathname ? (
                 <>
                   <Link href={ROUTES.ADMIN_ARTICLES.PATHNAME}>Статьи</Link>
+                  <Link href={ROUTES.ADMIN_EVENTS.PATHNAME}>Нетворкинг</Link>
                   <Link href={ROUTES.ADMIN_USERS.PATHNAME}>Пользователи</Link>
                 </>
               ) : (

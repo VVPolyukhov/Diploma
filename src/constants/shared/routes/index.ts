@@ -3,7 +3,7 @@ interface IRoute {
    * Должен начинаться со "/"
    */
   PATHNAME: string;
-  TITLE: string;
+  TITLE?: string;
 }
 
 type TRouteNames =
@@ -18,6 +18,8 @@ type TRouteNames =
   | "ADMIN_ARTICLES"
   | "ADMIN_ARTICLES_CREATE"
   // | "ADMIN_ARTICLES_VIEW"
+  | "ADMIN_EVENTS"
+  | "ADMIN_EVENTS_CREATE"
   | "MAIN"
   | "ADMIN_USERS";
 
@@ -69,6 +71,12 @@ export const ROUTES: Record<TRouteNames, IRoute> = {
   ADMIN_USERS: {
     PATHNAME: "/admin/users",
     TITLE: "Административная панель | Пользователи",
+  },
+  ADMIN_EVENTS: {
+    PATHNAME: "/admin/events",
+  },
+  ADMIN_EVENTS_CREATE: {
+    PATHNAME: "/admin/events/create",
   },
 };
 

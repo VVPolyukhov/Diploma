@@ -1,5 +1,6 @@
 import { DeleteOutlined } from "@ant-design/icons";
-import { Button, Table, Tag } from "antd";
+import { Table, Tag } from "antd";
+import Button from "components/kit/Button";
 import Header from "components/shared/Header";
 import { ROUTES } from "constants/shared/routes";
 import { useRouter } from "next/router";
