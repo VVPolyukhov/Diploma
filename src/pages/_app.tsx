@@ -9,11 +9,6 @@ import ConfigProviderWrapper from "components/service/ConfigProviderWrapper";
 import { font } from "styles/font";
 import Head from "next/head";
 
-// draft-js
-import "components/tree/Admin/Articles/Item/Editor/css/example.css";
-import "components/tree/Admin/Articles/Item/Editor/css/draft.css";
-import "components/tree/Admin/Articles/Item/Editor/css/rich-editor.css";
-
 /**
  * При первой загрузке приложения необходимо получить accessToken, если есть refreshToken
  * Если запрос получится неудачным, то просто отрисовываем кнопку "Войти", иначе появляется профиль пользователя

@@ -21,14 +21,13 @@ const options = [
     value: "Продажи",
     label: "Продажи",
   },
-]
-
+];
 
 interface IProps {}
 const ArticlesItemAdmin: React.FC<IProps> = () => {
   return (
     <div className={styles.root}>
-      <Header title="Создание статьи" goBackButton  />
+      <Header title="Создание статьи" goBackButton />
       <Form>
         <Form.Item name="title" label="Заголовок">
           <Input />
@@ -37,6 +36,7 @@ const ArticlesItemAdmin: React.FC<IProps> = () => {
           <Select mode="tags" options={options} />
         </Form.Item>
       </Form>
+
       <RichEditor />
     </div>
   );

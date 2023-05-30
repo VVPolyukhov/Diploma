@@ -44,7 +44,14 @@ export default class ModifiedDocument extends Document {
   render() {
     return (
       <Html lang="ru">
-        <Head />
+        <Head>
+          {/* eslint-disable-next-line @next/next/no-sync-scripts */}
+          <script
+            src="https://cdn.tiny.cloud/1/q17p4evekvozzk7h130bi02w7f2bvmuvzmkxhdr7cvcs2bsh/tinymce/6/tinymce.min.js"
+            referrerPolicy="origin"
+          ></script>
+        </Head>
+
         <body>
           <Main />
           <NextScript />
