@@ -1,23 +1,17 @@
 import { Editor } from "@tinymce/tinymce-react";
-import React, { useRef } from "react";
+import React from "react";
+import { articleTemplate } from "./template";
 
-interface IProps {}
-const RichEditor: React.FC<IProps> = () => {
-  const editorRef = useRef(null);
-
-  const log = () => {
-    if (editorRef.current) {
-      // @ts-ignore
-      console.log(editorRef.current.getContent());
-    }
-  };
-
+interface IProps {
+  editorRef: React.MutableRefObject<Editor | null>;
+}
+const RichEditor: React.FC<IProps> = ({ editorRef }) => {
   return (
     <>
       <Editor
         // @ts-ignore
         onInit={(evt, editor) => (editorRef.current = editor)}
-        initialValue={`<ul class="tox-checklist"><li>This is the <strong>initial content</strong> of the editor.</li></ul>`}
+        initialValue={articleTemplate}
         init={{
           height: 500,
           // ДЛя отображения статьи нужно расскоментировать код ниже и закоментировать все, что после него
@@ -59,7 +53,6 @@ const RichEditor: React.FC<IProps> = () => {
             "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
         }}
       />
-      <button onClick={log}>Log editor content</button>
     </>
   );
 };
