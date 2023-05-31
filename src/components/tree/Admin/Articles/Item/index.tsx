@@ -30,7 +30,7 @@ const options = [
 interface IProps {
   mode: TComponentModes;
 }
-const ArticlesItemAdmin: React.FC<IProps> = ({ mode = "edit" }) => {
+const ArticlesItemAdmin: React.FC<IProps> = ({ mode = "create" }) => {
   const [form] = Form.useForm();
   const editorRef = useRef<Editor | null>(null);
 

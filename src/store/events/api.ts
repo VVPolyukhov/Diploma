@@ -5,7 +5,6 @@ export const eventsApi = api.injectEndpoints({
     getEvents: builder.query({
       query: (body) => ({
         url: "networking_event",
-        body,
         method: "get",
       }),
     }),

@@ -2,14 +2,18 @@ import { DeleteOutlined } from "@ant-design/icons";
 import { Table, Tag } from "antd";
 import Button from "components/kit/Button";
 import Header from "components/shared/Header";
+import Spinner from "components/shared/Spinner";
 import { ROUTES } from "constants/shared/routes";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
+import { useGetArticlesQuery } from "store/articles/api";
 import styles from "./index.module.scss";
 
 interface IProps {}
 const ArticlesListAdmin: React.FC<IProps> = () => {
   const router = useRouter();
+
+  const { data, isLoading } = useGetArticlesQuery({});
 
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
 
@@ -30,40 +34,26 @@ const ArticlesListAdmin: React.FC<IProps> = () => {
   const columns = [
     {
       title: "Название",
-      dataIndex: "name",
+      dataIndex: "title",
     },
-    {
-      title: "Автор",
-      dataIndex: "author",
-    },
-    {
-      title: "Дата создания",
-      dataIndex: "creation_date",
-    },
+
+    // {
+    //   title: "Автор",
+    //   dataIndex: "author",
+    // },
+    // {
+    //   title: "Дата создания",
+    //   dataIndex: "creation_date",
+    // },
     {
       title: "Теги",
       dataIndex: "tags",
       render: (values: string[]) =>
-        values.map((e: string, i: number) => <Tag key={i}>{e}</Tag>),
+        ["Продажи", "Взаимодействие с клиентами"].map(
+          (e: string, i: number) => <Tag key={i}>{e}</Tag>
+        ),
     },
   ];
-
-  const dataSource = [
-    {
-      key: 1,
-      name: "Как создать востребованный продукт?",
-      author: "Павлов Александр",
-      creation_date: "02.05.2023",
-      tags: ["Продукт"],
-    },
-    {
-      key: 2,
-      name: "Продажи на высокий чек",
-      author: "Смирнова Екатерина",
-      creation_date: "01.05.2023",
-      tags: ["Продажи", "Взаимодействие с клиентами"],
-    },
-  ]
 
   return (
     <>
@@ -71,17 +61,39 @@ const ArticlesListAdmin: React.FC<IProps> = () => {
         title="Статьи"
         additionalContent={
           <>
-          <Button icon={<DeleteOutlined />} danger disabled={!selectedRowKeys.length} />
-          <Button
-            type="primary"
-            onClick={() => router.push(ROUTES.ADMIN_ARTICLES_CREATE.PATHNAME)}
+            <Button
+              icon={<DeleteOutlined />}
+              danger
+              disabled={!selectedRowKeys.length}
+            />
+            <Button
+              type="primary"
+              onClick={() => router.push(ROUTES.ADMIN_ARTICLES_CREATE.PATHNAME)}
             >
-            Создать
-          </Button>
-            </>
+              Создать
+            </Button>
+          </>
         }
       />
-      <Table rowSelection={rowSelection} columns={columns} dataSource={dataSource} pagination={false} />
+      {isLoading ? (
+        <Spinner margin="150px auto" />
+      ) : (
+        <Table
+          rowSelection={rowSelection}
+          columns={columns}
+          dataSource={data.result}
+          pagination={false}
+          onRow={({ id }) => {
+            return {
+              onClick: () => {
+                router.push({
+                  pathname: `/admin/articles/${id}`,
+                });
+              },
+            };
+          }}
+        />
+      )}
     </>
   );
 };
