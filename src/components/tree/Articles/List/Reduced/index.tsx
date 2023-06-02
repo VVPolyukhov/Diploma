@@ -7,20 +7,23 @@ const ReducedArticlesList: React.FC<IProps> = () => {
     {
       id: 1,
       title: "Как создать востребованный продукт?",
-      background: "#D5E8FF",
+      firstname: "Илья",
+      lastname: "Руденко",
     },
     {
       id: 2,
       title: "Продажи на высокий чек",
-      background: "#D5E8FF",
+      firstname: "Эльвира",
+      lastname: "Смирнова",
     },
   ];
 
   return (
     <div className={styles.root}>
-      {items.map(({ id, title, background }) => (
-        <div style={{ background }} key={id} className={styles.card}>
-          <h5>{title}</h5>
+      {items.map(({ id, title, firstname, lastname }) => (
+        <div key={id} className={styles.card}>
+          <h4 className={styles.title}>{title}</h4>
+          <span className={styles.author}>{`${firstname} ${lastname}`}</span>
         </div>
       ))}
     </div>

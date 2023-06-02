@@ -15,10 +15,6 @@ const PrivateHome: React.FC<IProps> = () => {
       <CommonTag>Статьи</CommonTag>
       <ReducedArticlesList />
 
-      {/* TODO: Collapse antd */}
-      <CommonTag>Курсы</CommonTag>
-      <ReducedCoursesList />
-
       <CommonTag>Нетворкинг-мероприятия</CommonTag>
       <div className={styles.events}>
         <div className={styles.event}>
@@ -37,6 +33,10 @@ const PrivateHome: React.FC<IProps> = () => {
           </div>
         </div>
       </div>
+
+      {/* TODO: Collapse antd */}
+      <CommonTag>Курсы</CommonTag>
+      <ReducedCoursesList />
     </div>
   );
 };

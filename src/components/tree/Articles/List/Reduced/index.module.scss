@@ -1,19 +1,37 @@
 .root {
-  margin-bottom: 30px;
   margin-top: 20px;
+  margin-bottom: 30px;
 
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(5, 1fr);
   gap: 15px;
 
   .card {
-    height: 130px;
-    border-radius: 12px;
-    padding: 10px;
+    min-height: 170px;
+    background: linear-gradient(
+      179.93deg,
+      rgba(223, 185, 235, 0.65) 0.06%,
+      rgba(231, 202, 52, 0) 100.79%
+    );
+    border: 1px solid rgb(219, 219, 219);
+    border-radius: 30px;
+    padding: 10px 16px;
     display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: space-between;
 
-    h5 {
-      align-self: flex-end;
+    &:hover {
+      cursor: pointer;
+    }
+
+    .title {
+      font-weight: 400;
+    }
+
+    .author {
+      font-weight: 300;
+      text-align: end;
     }
   }
 }
