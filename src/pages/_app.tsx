@@ -8,6 +8,9 @@ import "styles/index.scss";
 import ConfigProviderWrapper from "components/service/ConfigProviderWrapper";
 import { font } from "styles/font";
 import Head from "next/head";
+import dayjs from "dayjs";
+import "dayjs/locale/ru";
+dayjs.locale("ru");
 
 /**
  * При первой загрузке приложения необходимо получить accessToken, если есть refreshToken

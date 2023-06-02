@@ -19,6 +19,12 @@ export const eventsApi = api.injectEndpoints({
         method: "get",
       }),
     }),
+    getEventAvatar: builder.query({
+      query: ({ id }) => ({
+        url: `networking_event/avatar/${id}`,
+        method: "get",
+      }),
+    }),
     editEvent: builder.mutation({
       query: (body) => ({
         url: `networking_event`,
@@ -54,4 +60,5 @@ export const {
   useEditEventMutation,
   useGetEventQuery,
   useGetEventsQuery,
+  useGetEventAvatarQuery,
 } = eventsApi;
