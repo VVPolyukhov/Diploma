@@ -1,3 +1,7 @@
+import { notification } from "antd";
+import { ROUTES } from "constants/shared/routes";
+import Router from "next/router";
+import { ETagTypes } from "store/api/types";
 import { api } from "../api";
 
 export const articlesApi = api.injectEndpoints({
@@ -7,6 +11,7 @@ export const articlesApi = api.injectEndpoints({
         url: "article",
         method: "get",
       }),
+      providesTags: [ETagTypes.articles],
     }),
     getArticle: builder.query({
       query: ({ articleId }) => ({
@@ -20,6 +25,16 @@ export const articlesApi = api.injectEndpoints({
         body,
         method: "post",
       }),
+      invalidatesTags: [ETagTypes.articles],
+      onQueryStarted: async (arg, api) => {
+        try {
+          await api.queryFulfilled;
+          Router.push(ROUTES.ADMIN_ARTICLES.PATHNAME);
+          notification.success({
+            message: "Статья создана",
+          });
+        } catch (error) {}
+      },
     }),
   }),
 });

@@ -1,0 +1,10 @@
+export const SERVER_DATE_MASK = "YYYY-MM-DD";
+export const PICKER_DATE_MASK = "DD.MM.YYYY";
+export const PICKER_DATE_MASK_FULL_TIME = "DD.MM.YYYY  HH:mm";
+export const PICKER_SHORT_YEAR_DATE_MASK = "DD.MM.YY";
+export const PICKER_TIME_MASK = "HH:mm";
+export const LONG_DATE_MASK = "D MMM YYYY h:mm";
+export const PICKER_DATE_FULL_TIME_NUMBER = "YYYYMMDDHHmmss";
+export const PICKER_SHORT_DATE_MASK = "DD MMM";
+export const PICKER_YEAR_MONTH_DATE_MASK = "YYYY-M";
+export const PICKER_WEEK_DATE_MASK = "YYYY-MM-DD-WW";
