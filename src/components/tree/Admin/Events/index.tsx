@@ -3,6 +3,7 @@ import { Table } from "antd";
 import Button from "components/kit/Button";
 import Header from "components/shared/Header";
 import Spinner from "components/shared/Spinner";
+import { PICKER_DATE_MASK_FULL_TIME } from "constants/shared/date";
 import { ROUTES } from "constants/shared/routes";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
@@ -72,7 +73,8 @@ const AdminEvents: React.FC<IProps> = () => {
     {
       title: "Время начала",
       dataIndex: "startTime",
-      render: (value: string) => convertDate(value),
+      render: (value: string) =>
+        convertDate(value, { format: PICKER_DATE_MASK_FULL_TIME }),
     },
     {
       title: "Максимальное количество участников",

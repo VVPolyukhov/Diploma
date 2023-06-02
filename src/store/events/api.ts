@@ -1,3 +1,7 @@
+import { notification } from "antd";
+import { ROUTES } from "constants/shared/routes";
+import Router from "next/router";
+import { ETagTypes } from "store/api/types";
 import { api } from "../api";
 
 export const eventsApi = api.injectEndpoints({
@@ -7,6 +11,7 @@ export const eventsApi = api.injectEndpoints({
         url: "networking_event",
         method: "get",
       }),
+      providesTags: [ETagTypes.events],
     }),
     getEvent: builder.query({
       query: ({ id }) => ({
@@ -20,6 +25,7 @@ export const eventsApi = api.injectEndpoints({
         body,
         method: "put",
       }),
+      invalidatesTags: [ETagTypes.events],
     }),
     createEvent: builder.mutation({
       query: (body) => ({
@@ -27,6 +33,16 @@ export const eventsApi = api.injectEndpoints({
         body,
         method: "post",
       }),
+      onQueryStarted: async (arg, api) => {
+        try {
+          await api.queryFulfilled;
+          Router.push(ROUTES.ADMIN_EVENTS.PATHNAME);
+          notification.success({
+            message: "Мероприятие создано",
+          });
+        } catch (error) {}
+      },
+      invalidatesTags: [ETagTypes.events],
     }),
   }),
 });

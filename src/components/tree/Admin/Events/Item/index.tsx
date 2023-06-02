@@ -2,15 +2,23 @@ import { DatePicker, Form, Input, InputNumber } from "antd";
 import Button from "components/kit/Button";
 import Header from "components/shared/Header";
 import { TComponentModes } from "constants/shared/components";
+import dayjs from "dayjs";
 import React from "react";
+import { useCreateEventMutation } from "store/events/api";
 import styles from "./index.module.scss";
 
 interface IProps {
   mode?: TComponentModes;
 }
 const AdminEventsItem: React.FC<IProps> = ({ mode = "edit" }) => {
+  const [createEvent, { isLoading: isCreationLoading }] =
+    useCreateEventMutation();
+
   const onFinish = (values: any) => {
-    console.log("values", values);
+    values = { ...values, startTime: dayjs(values.startTime).format() };
+    if (mode === "create") {
+      createEvent(values);
+    }
   };
 
   return (
@@ -42,7 +50,12 @@ const AdminEventsItem: React.FC<IProps> = ({ mode = "edit" }) => {
           <InputNumber />
         </Form.Item>
         <Form.Item>
-          <Button size="large" type="primary" htmlType="submit">
+          <Button
+            loading={isCreationLoading}
+            size="large"
+            type="primary"
+            htmlType="submit"
+          >
             Сохранить
           </Button>
         </Form.Item>
