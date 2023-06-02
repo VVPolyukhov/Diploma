@@ -7,7 +7,7 @@ import { api } from "../api";
 export const eventsApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getEvents: builder.query({
-      query: (body) => ({
+      query: () => ({
         url: "networking_event",
         method: "get",
       }),
@@ -24,6 +24,7 @@ export const eventsApi = api.injectEndpoints({
         url: `networking_event`,
         body,
         method: "put",
+        formData: true,
       }),
       invalidatesTags: [ETagTypes.events],
     }),
@@ -32,6 +33,7 @@ export const eventsApi = api.injectEndpoints({
         url: "networking_event",
         body,
         method: "post",
+        formData: true,
       }),
       onQueryStarted: async (arg, api) => {
         try {

@@ -1,12 +1,15 @@
-import { DatePicker, Form, Input, InputNumber } from "antd";
+import { InboxOutlined } from "@ant-design/icons";
+import { DatePicker, Form, Input, InputNumber, Upload, UploadFile } from "antd";
+import { RcFile } from "antd/es/upload";
 import Button from "components/kit/Button";
 import Header from "components/shared/Header";
 import Spinner from "components/shared/Spinner";
 import { TComponentModes } from "constants/shared/components";
 import dayjs from "dayjs";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useState } from "react";
 import { useCreateEventMutation, useGetEventQuery } from "store/events/api";
+import { convertObjectToFormData } from "utils/shared/formData";
 import styles from "./index.module.scss";
 
 interface IProps {
@@ -14,6 +17,8 @@ interface IProps {
 }
 const AdminEventsItem: React.FC<IProps> = ({ mode = "edit" }) => {
   const router = useRouter();
+  const [form] = Form.useForm();
+  const [fileList, setFileList] = useState<RcFile[]>([]);
 
   const { data, isLoading } = useGetEventQuery(
     { id: router.query.id },
@@ -21,16 +26,24 @@ const AdminEventsItem: React.FC<IProps> = ({ mode = "edit" }) => {
       skip: !router.query.id,
     }
   );
-  console.log("data", data);
 
   const [createEvent, { isLoading: isCreationLoading }] =
     useCreateEventMutation();
 
-  const onFinish = (values: any) => {
+  const onFinish = () => {
+    let { image, ...values } = form.getFieldsValue();
+    console.log("fileList", fileList);
     values = { ...values, startTime: dayjs(values.startTime).format() };
     if (mode === "create") {
-      createEvent(values);
+      const formData = convertObjectToFormData(values);
+      formData.append("image", fileList[0]);
+      createEvent(formData);
     }
+  };
+
+  const uploadHandler = (file: RcFile) => {
+    setFileList([file]);
+    return false;
   };
 
   return (
@@ -49,11 +62,11 @@ const AdminEventsItem: React.FC<IProps> = ({ mode = "edit" }) => {
       {isLoading ? (
         <Spinner margin="70px auto" />
       ) : (
-        <Form onFinish={onFinish}>
+        <Form form={form}>
           <Form.Item required name="title" label="Заголовок">
             <Input />
           </Form.Item>
-          <Form.Item name="description" label="Описание">
+          <Form.Item required name="description" label="Описание">
             <Input.TextArea />
           </Form.Item>
           <Form.Item required name="link" label="Ссылка">
@@ -68,6 +81,22 @@ const AdminEventsItem: React.FC<IProps> = ({ mode = "edit" }) => {
             label="Максимальное количество участников"
           >
             <InputNumber />
+          </Form.Item>
+
+          <Form.Item label="Обложка" name="image">
+            <Upload.Dragger
+              showUploadList={false}
+              fileList={fileList}
+              beforeUpload={uploadHandler}
+            >
+              <p className="ant-upload-drag-icon">
+                <InboxOutlined />
+              </p>
+              <p>
+                Перетащите файл в данную область, чтобы загрузить обложку
+                нетворкинг-мероприятия
+              </p>
+            </Upload.Dragger>
           </Form.Item>
         </Form>
       )}
