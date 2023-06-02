@@ -44,57 +44,60 @@ export const baseQueryWithReauth: BaseQueryFn<
   FetchBaseQueryError
 > = async (args, api, extraOptions) => {
   // wait until the mutex is available without locking it
-  await mutex.waitForUnlock();
+  // await mutex.waitForUnlock();
   let result = await baseQuery(args, api, extraOptions);
   if (result.error) {
-    if (result.error.status === 401) {
-      // checking whether the mutex is locked
-      if (!mutex.isLocked()) {
-        const release = await mutex.acquire();
-        try {
-          const refreshToken = getRefreshToken();
-
-          if (refreshToken) {
-            const refreshResult = await baseQuery(
-              {
-                url: "/auth/token",
-                body: {
-                  refreshToken,
-                },
-              },
-              api,
-              extraOptions
-            );
-            if (refreshResult.data) {
-              setRefreshToken(
-                (refreshResult.data as IAuthBaseResponse).refreshToken
-              );
-              api.dispatch(
-                setAccessToken(
-                  (refreshResult.data as IAuthBaseResponse).accessToken
-                )
-              );
-
-              // retry the initial query
-              result = await baseQuery(args, api, extraOptions);
-            } else {
-              // api.dispatch(loggedOut())
-            }
-          } else {
-            // api.dispatch(loggedOut())
-          }
-        } finally {
-          // release must be called once the mutex should be released again.
-          release();
-        }
-      } else {
-        // wait until the mutex is available without locking it
-        await mutex.waitForUnlock();
-        result = await baseQuery(args, api, extraOptions);
-      }
-    } else {
-      notification.error({ message: "Произошла непредвиденная ошибка" });
-    }
+    notification.error({ message: "Произошла непредвиденная ошибка" });
   }
+  // if (result.error) {
+  //   if (result.error.status === 401) {
+  //     // checking whether the mutex is locked
+  //     if (!mutex.isLocked()) {
+  //       const release = await mutex.acquire();
+  //       try {
+  //         const refreshToken = getRefreshToken();
+
+  //         if (refreshToken) {
+  //           const refreshResult = await baseQuery(
+  //             {
+  //               url: "/auth/token",
+  //               body: {
+  //                 refreshToken,
+  //               },
+  //             },
+  //             api,
+  //             extraOptions
+  //           );
+  //           if (refreshResult.data) {
+  //             setRefreshToken(
+  //               (refreshResult.data as IAuthBaseResponse).refreshToken
+  //             );
+  //             api.dispatch(
+  //               setAccessToken(
+  //                 (refreshResult.data as IAuthBaseResponse).accessToken
+  //               )
+  //             );
+
+  //             // retry the initial query
+  //             result = await baseQuery(args, api, extraOptions);
+  //           } else {
+  //             // api.dispatch(loggedOut())
+  //           }
+  //         } else {
+  //           // api.dispatch(loggedOut())
+  //         }
+  //       } finally {
+  //         // release must be called once the mutex should be released again.
+  //         release();
+  //       }
+  //     } else {
+  //       // wait until the mutex is available without locking it
+  //       await mutex.waitForUnlock();
+  //       result = await baseQuery(args, api, extraOptions);
+  //     }
+  //   } else {
+  //     notification.error({ message: "Произошла непредвиденная ошибка" });
+  //   }
+  // }
   return result;
 };
