@@ -57,7 +57,9 @@ const ArticlesItemAdmin: React.FC<IProps> = ({ mode = "create" }) => {
       // @ts-ignore
       textArticle: editorRef?.current?.getContent(),
     };
-    createArticle(requestData);
+    if (mode === "create") {
+      createArticle(requestData);
+    }
   };
 
   return (

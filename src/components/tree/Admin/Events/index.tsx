@@ -2,15 +2,36 @@ import { DeleteOutlined } from "@ant-design/icons";
 import { Table } from "antd";
 import Button from "components/kit/Button";
 import Header from "components/shared/Header";
+import Spinner from "components/shared/Spinner";
 import { ROUTES } from "constants/shared/routes";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
+import { useGetEventsQuery } from "store/events/api";
+import { convertDate } from "utils/shared/date";
+
+interface IAuthorShortModel {
+  id: React.Key;
+  firstLastName: string;
+}
+interface IData {
+  authorShortModel: IAuthorShortModel;
+  description: string;
+  id: number;
+  link: string;
+  maximumNumberOfParticipants: number;
+  numberOfAvailableSeats: number;
+  startTime: string;
+  status: "TO_BE";
+  title: string;
+}
 
 interface IProps {}
 const AdminEvents: React.FC<IProps> = () => {
   const router = useRouter();
 
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
+
+  const { data, isLoading } = useGetEventsQuery({});
 
   const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
     setSelectedRowKeys(newSelectedRowKeys);
@@ -37,7 +58,8 @@ const AdminEvents: React.FC<IProps> = () => {
     },
     {
       title: "Автор",
-      dataIndex: "authorFirstLastNames",
+      dataIndex: "authorShortModel",
+      render: (value: IAuthorShortModel) => value.firstLastName,
     },
     {
       title: "Статус",
@@ -50,6 +72,7 @@ const AdminEvents: React.FC<IProps> = () => {
     {
       title: "Время начала",
       dataIndex: "startTime",
+      render: (value: string) => convertDate(value),
     },
     {
       title: "Максимальное количество участников",
@@ -58,28 +81,6 @@ const AdminEvents: React.FC<IProps> = () => {
     {
       title: "Количество свободных мест",
       dataIndex: "numberOfAvailableSeats",
-    },
-  ];
-
-  const dataSource = [
-    {
-      key: 1,
-      title: "string",
-      description: "string",
-      link: "string",
-      status: "Мероприятие прошло",
-      startTime: "2023-05-30T20:31:00.872Z",
-      maximumNumberOfParticipants: 20,
-      numberOfAvailableSeats: 1,
-    },
-    {
-      key: 2,
-      title: "string",
-      description: "string",
-      link: "string",
-      startTime: "2023-05-30T20:31:00.872Z",
-      maximumNumberOfParticipants: 7,
-      numberOfAvailableSeats: 4,
     },
   ];
 
@@ -103,12 +104,16 @@ const AdminEvents: React.FC<IProps> = () => {
           </>
         }
       />
-      <Table
-        rowSelection={rowSelection}
-        columns={columns}
-        dataSource={dataSource}
-        pagination={false}
-      />
+      {isLoading ? (
+        <Spinner margin="70px auto" />
+      ) : (
+        <Table
+          rowSelection={rowSelection}
+          columns={columns}
+          dataSource={data.result}
+          pagination={false}
+        />
+      )}
     </>
   );
 };
