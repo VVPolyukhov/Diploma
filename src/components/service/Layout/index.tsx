@@ -11,12 +11,15 @@ import { useAuth } from "utils/hooks/useAuth";
 import { logout } from "utils/shared/auth";
 import { useRouter } from "next/router";
 import { useDispatch } from "react-redux";
+import { useGetUserQuery } from "store/user/api";
 
 interface IProps {}
 const MainLayout: React.FC<PropsWithChildren<IProps>> = ({ children }) => {
   const dispatch = useDispatch();
   const isAuth = useAuth();
   const router = useRouter();
+
+  const { data } = useGetUserQuery({});
 
   const isAdmin = true;
   const isAdminPathname = router.pathname.startsWith("/admin");
@@ -96,7 +99,7 @@ const MainLayout: React.FC<PropsWithChildren<IProps>> = ({ children }) => {
             placement="bottomRight"
           >
             <div className={styles.profile}>
-              <span>Екатерина</span>
+              <span>{data?.firstName}</span>
 
               <Avatar icon={<UserOutlined />} />
             </div>
