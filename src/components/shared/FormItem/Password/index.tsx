@@ -11,16 +11,21 @@ const PasswordFormItem: React.FC<IProps> = ({ formItemProps = {}, internalCompon
       name="password"
       label="Пароль"
       rules={[
-        { required: true, message: 'Введите пароль' },
-        {
-          pattern: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^\w\d\s:])([^\sА-Яа-яЁё]){8,}$/,
-          message: 'Поле не соотвествует шаблону',
-        },
+        { required: true, message: "Введите пароль" },
+        // {
+        //   pattern: /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^\w\d\s:])([^\sА-Яа-яЁё]){8,}$/,
+        //   message: 'Поле не соотвествует шаблону',
+        // },
         ...(formItemProps?.rules || []),
       ]}
       {...formItemProps}
     >
-      <Input.Password type="password" placeholder="Пароль" size="large" {...internalComponentProps} />
+      <Input.Password
+        type="password"
+        placeholder="Пароль"
+        size="large"
+        {...internalComponentProps}
+      />
     </Form.Item>
   );
 };

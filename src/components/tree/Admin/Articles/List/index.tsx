@@ -36,11 +36,13 @@ const ArticlesListAdmin: React.FC<IProps> = () => {
       title: "Название",
       dataIndex: "title",
     },
-
-    // {
-    //   title: "Автор",
-    //   dataIndex: "author",
-    // },
+    {
+      title: "Автор",
+      dataIndex: "authorShortModel",
+      render: (value: { id: string; firstLastName: string }) => {
+        return value.firstLastName;
+      },
+    },
     // {
     //   title: "Дата создания",
     //   dataIndex: "creation_date",
