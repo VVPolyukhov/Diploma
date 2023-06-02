@@ -86,7 +86,7 @@ const ArticlesItemAdmin: React.FC<IProps> = ({ mode = "create" }) => {
             </Form.Item>
           </Form>
 
-          <RichEditor editorRef={editorRef} />
+          <RichEditor editorRef={editorRef} readonly={true} />
         </>
       )}
     </div>

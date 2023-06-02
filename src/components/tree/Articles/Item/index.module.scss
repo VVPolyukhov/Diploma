@@ -1,0 +1,22 @@
+.root {
+  .additionalText {
+    margin-top: -22px;
+    display: block;
+    font-size: 18px;
+    color: var(--color-text-secondary);
+    margin-bottom: 30px;
+  }
+
+  .meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+
+    h3 {
+      font-weight: 400;
+      color: var(--color-primary);
+      margin: 0;
+    }
+  }
+}
