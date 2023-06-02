@@ -32,7 +32,6 @@ const AdminEventsItem: React.FC<IProps> = ({ mode = "edit" }) => {
 
   const onFinish = () => {
     let { image, ...values } = form.getFieldsValue();
-    console.log("fileList", fileList);
     values = { ...values, startTime: dayjs(values.startTime).format() };
     if (mode === "create") {
       const formData = convertObjectToFormData(values);
@@ -83,7 +82,7 @@ const AdminEventsItem: React.FC<IProps> = ({ mode = "edit" }) => {
             <InputNumber />
           </Form.Item>
 
-          <Form.Item label="Обложка" name="image">
+          <Form.Item required label="Обложка" name="image">
             <Upload.Dragger
               showUploadList={false}
               fileList={fileList}
