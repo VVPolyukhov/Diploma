@@ -4,12 +4,14 @@ import { api } from "../api";
 
 export const userApi = api.injectEndpoints({
   endpoints: (builder) => ({
-    // getUsers: builder.query({
-    //   query: () => ({
-    //     url: "user",
-    //     method: "get",
-    //   }),
-    // }),
+    getUsers: builder.query({
+      query: () => ({
+        url: `admin/users`,
+        method: "get",
+      }),
+      providesTags: [ETagTypes.users],
+    }),
+
     getUser: builder.query({
       query: () => ({
         url: `user`,
@@ -68,4 +70,5 @@ export const {
   useEditUserMutation,
   useGetUserAvatarQuery,
   useGetUserQuery,
+  useGetUsersQuery,
 } = userApi;

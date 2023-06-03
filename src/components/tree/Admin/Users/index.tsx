@@ -1,12 +1,15 @@
-import {  Table, Tag, Tooltip } from "antd";
+import { Table, Tooltip } from "antd";
 import Button from "components/kit/Button";
 import Header from "components/shared/Header";
+import Spinner from "components/shared/Spinner";
 import React, { useState } from "react";
+import { useGetUsersQuery } from "store/user/api";
 import CouresesAppointmentModal from "./CoursesAppointment";
-import styles from "./index.module.scss";
 
 interface IProps {}
 const UsersAdmin: React.FC<IProps> = () => {
+  const { data, isLoading } = useGetUsersQuery({});
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
 
@@ -27,45 +30,25 @@ const UsersAdmin: React.FC<IProps> = () => {
   const columns = [
     {
       title: "Фамилия",
-      dataIndex: "surname",
+      dataIndex: "lastName",
     },
     {
       title: "Имя",
-      dataIndex: "name",
+      dataIndex: "firstName",
     },
     {
       title: "Электронная почта",
       dataIndex: "email",
     },
+    // {
+    //   title: "Курсы",
+    //   dataIndex: "courses",
+    //   render: (values: string[]) =>
+    //     values.map((e: string, i: number) => <Tag key={i}>{e}</Tag>),
+    // },
     {
-      title: "Курсы",
-      dataIndex: "courses",
-      render: (values: string[]) =>
-        values.map((e: string, i: number) => <Tag key={i}>{e}</Tag>),
-    },
-  ];
-
-  const dataSource = [
-    {
-      key: 1,
-      name: "Сергей",
-      surname: "Павлов",
-      email: "pavlovsr@gmail.com",
-      courses: ["Маркетинг"],
-    },
-    {
-      key: 2,
-      name: "Михаил",
-      surname: "Петряйкин",
-      email: "masdj@gmail.com",
-      courses: [],
-    },
-    {
-      key: 3,
-      name: "Елизавета",
-      surname: "Петрова",
-      email: "petelis@gmail.com",
-      courses: ["Маркетинг", "СММ"],
+      title: "Город",
+      dataIndex: "city",
     },
   ];
 
@@ -99,12 +82,16 @@ const UsersAdmin: React.FC<IProps> = () => {
           )
         }
       />
-      <Table
-        rowSelection={rowSelection}
-        columns={columns}
-        dataSource={dataSource}
-        pagination={false}
-      />
+      {isLoading ? (
+        <Spinner margin="70px auto" />
+      ) : (
+        <Table
+          rowSelection={rowSelection}
+          columns={columns}
+          dataSource={data?.result}
+          pagination={false}
+        />
+      )}
     </>
   );
 };
