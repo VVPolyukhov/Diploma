@@ -1,0 +1,28 @@
+.root {
+  .list {
+    margin-top: 50px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+
+    .item {
+      display: flex;
+      flex-direction: column;
+      row-gap: 10px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.postscript {
+  width: 100%;
+  text-align: center;
+  display: inline-block;
+  margin-top: 10px;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  padding: 0 10px;
+}

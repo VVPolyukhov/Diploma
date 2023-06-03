@@ -1,0 +1,29 @@
+.card {
+    min-height: 170px;
+    min-width: 300px;
+    background: linear-gradient(
+      179.93deg,
+      rgba(223, 185, 235, 0.65) 0.06%,
+      rgba(231, 202, 52, 0) 100.79%
+    );
+    border: 1px solid rgb(219, 219, 219);
+    border-radius: 30px;
+    padding: 10px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    justify-content: space-between;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    .title {
+      font-weight: 400;
+    }
+
+    .author {
+      font-weight: 300;
+      text-align: end;
+    }
+  }

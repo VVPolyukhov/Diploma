@@ -7,7 +7,7 @@ import { api } from "../api";
 export const articlesApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getArticles: builder.query({
-      query: (body) => ({
+      query: () => ({
         url: "article",
         method: "get",
       }),

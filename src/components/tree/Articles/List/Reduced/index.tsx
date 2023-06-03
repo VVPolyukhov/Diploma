@@ -1,14 +1,13 @@
 import Spinner from "components/shared/Spinner";
-import { useRouter } from "next/router";
 import React from "react";
 import { useGetArticlesQuery } from "store/articles/api";
+import ArticleCard, { IArticleItem } from "../../Card";
 import styles from "./index.module.scss";
 
 interface IProps {
   className?: string;
 }
 const ReducedArticlesList: React.FC<IProps> = ({ className }) => {
-  const router = useRouter();
   const { data, isLoading } = useGetArticlesQuery({});
 
   return (
@@ -16,17 +15,8 @@ const ReducedArticlesList: React.FC<IProps> = ({ className }) => {
       {isLoading ? (
         <Spinner margin="30px auto" />
       ) : (
-        data?.result?.map(({ id, title, authorShortModel }: any) => (
-          <div
-            key={id}
-            className={styles.card}
-            onClick={() => router.push(`/articles/${id}`)}
-          >
-            <h4 className={styles.title}>{title}</h4>
-            <span className={styles.author}>
-              {authorShortModel.firstLastName}
-            </span>
-          </div>
+        data?.result?.map((item: IArticleItem) => (
+          <ArticleCard key={item.id} {...item} />
         ))
       )}
     </div>
