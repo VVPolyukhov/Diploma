@@ -4,6 +4,7 @@ import styles from "./index.module.scss";
 import courseImage from "images/CourseImage.jpg";
 import Button from "components/kit/Button";
 import Link from "next/link";
+import ReducedArticlesList from "components/tree/Articles/List/Reduced";
 
 interface IProps {}
 const CourseItem: React.FC<IProps> = () => {
@@ -53,6 +54,9 @@ const CourseItem: React.FC<IProps> = () => {
           </div>
         </div>
       </section>
+
+      <h1 className={styles.useful}>Полезные материалы от автора</h1>
+      <ReducedArticlesList className={styles.articles} />
     </div>
   );
 };
