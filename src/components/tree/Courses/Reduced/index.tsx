@@ -14,21 +14,20 @@ const ReducedCoursesList: React.FC<IProps> = () => {
       title: "Мои курсы",
       image: dataImage,
     },
-    // !!! Заменить картинки
-    // {
-    //   id: 2,
-    //   title: "SMM",
-    //   image: searchImage,
-    // },
-    // {
-    //   id: 3,
-    //   title: "Продажи",
-    //   image: financeImage,
-    // },
     {
       id: 4,
       title: "Продюсирование",
       image: vlogImage,
+    },
+    {
+      id: 2,
+      title: "SMM",
+      image: searchImage,
+    },
+    {
+      id: 3,
+      title: "Продажи",
+      image: financeImage,
     },
   ];
 

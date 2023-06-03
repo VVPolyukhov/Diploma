@@ -22,7 +22,6 @@ const SignUp: React.FC<IProps> = () => {
       <FirstNameFormItem />
       <LastNameFormItem />
       <EmailFormItem />
-      {/* TODO: Введите пароль повторно */}
       <PasswordFormItem />
       <Form.Item>
         <Button
