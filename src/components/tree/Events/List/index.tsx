@@ -2,8 +2,7 @@ import Button from "components/kit/Button";
 import Spinner from "components/shared/Spinner";
 import Image from "next/image";
 import React from "react";
-import network1 from "images/Network1.png";
-import { useGetEventAvatarQuery, useGetEventsQuery } from "store/events/api";
+import { useGetEventsQuery } from "store/events/api";
 import styles from "./index.module.scss";
 import { convertDate } from "utils/shared/date";
 
@@ -39,30 +38,36 @@ const EventsList: React.FC<IProps> = () => {
           startTime,
           numberOfAvailableSeats,
           maximumNumberOfParticipants,
+          image,
         }: any) => {
           if (numberOfAvailableSeats > 0)
             return (
               <div className={styles.event} key={id}>
                 <div className={styles.content}>
-                  <h1>{title}</h1>
-                  <h3>
+                  <h2>{title}</h2>
+                  <span className={styles.time}>
                     {convertDate(startTime, {
                       format: "D MMMM в HH:mm",
                     })}{" "}
                     по МСК{" "}
-                  </h3>
-                  <div>
-                    <h5>
-                      Осталось {numberOfAvailableSeats}/
-                      {maximumNumberOfParticipants} мест
-                    </h5>
+                  </span>
+                  <div className={styles.target}>
                     <Button size="large" type="primary" className={styles.btn}>
                       Зарегистрироваться
                     </Button>
+                    <span className={styles.seats}>
+                      Осталось {numberOfAvailableSeats}/
+                      {maximumNumberOfParticipants} мест
+                    </span>
                   </div>
                 </div>
                 <div className={styles.img}>
-                  <Image src={network1} alt="" width={300} height={300} />
+                  <Image
+                    src={`data:image/png;base64,${image}`}
+                    alt="Фотография автора"
+                    width={300}
+                    height={270}
+                  />
                 </div>
               </div>
             );

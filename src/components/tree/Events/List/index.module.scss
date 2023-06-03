@@ -1,39 +1,54 @@
 .events {
-    margin-top: 20px;
-    margin-bottom: 30px;
-    display: flex;
-    overflow-x: scroll;
-    gap: 20px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  display: flex;
+  overflow-x: scroll;
+  gap: 20px;
 
-    .event {
-      position: relative;
-      overflow: hidden;
-      height: 300px;
-      min-width: 500px;
-      padding: 30px;
-      background: linear-gradient(
-        180deg,
-        rgba(109, 54, 227, 0.65) 50%,
-        rgba(109, 54, 227, 0) 100%
-      );
-      border-radius: 50px;
-      border: 1px solid grey;
+  .event {
+    position: relative;
+    overflow: hidden;
+    height: 300px;
+    width: 465px;
+    padding: 28px;
+    background: linear-gradient(
+      180deg,
+      rgba(109, 54, 227, 0.65) 50%,
+      rgba(109, 54, 227, 0) 100%
+    );
+    border-radius: 50px;
+    border: 1px solid grey;
 
-      .content {
-        width: 45%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+    .content {
+      width: 45%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
 
-        color: aliceblue;
+      color: aliceblue;
 
+      .time {
+        font-size: 18px;
       }
 
-      .img {
-        position: absolute;
-        bottom: 0;
-        right: 0;
+      .target {
+        margin-bottom: -4px;
+
+        .seats {
+          text-align: center;
+          display: block;
+          color: var(--color-text-secondary);
+          font-size: 14px;
+          margin-top: 6px;
+        }
       }
     }
+
+    .img {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+    }
   }
+}
