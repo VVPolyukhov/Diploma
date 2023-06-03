@@ -1,31 +1,32 @@
+import Spinner from "components/shared/Spinner";
+import { useRouter } from "next/router";
 import React from "react";
+import { useGetArticlesQuery } from "store/articles/api";
 import styles from "./index.module.scss";
 
 interface IProps {}
 const ReducedArticlesList: React.FC<IProps> = () => {
-  const items = [
-    {
-      id: 1,
-      title: "Как создать востребованный продукт?",
-      firstname: "Илья",
-      lastname: "Руденко",
-    },
-    {
-      id: 2,
-      title: "Продажи на высокий чек",
-      firstname: "Эльвира",
-      lastname: "Смирнова",
-    },
-  ];
+  const router = useRouter();
+  const { data, isLoading } = useGetArticlesQuery({});
 
   return (
     <div className={styles.root}>
-      {items.map(({ id, title, firstname, lastname }) => (
-        <div key={id} className={styles.card}>
-          <h4 className={styles.title}>{title}</h4>
-          <span className={styles.author}>{`${firstname} ${lastname}`}</span>
-        </div>
-      ))}
+      {isLoading ? (
+        <Spinner margin="30px auto" />
+      ) : (
+        data?.result?.map(({ id, title, authorShortModel }: any) => (
+          <div
+            key={id}
+            className={styles.card}
+            onClick={() => router.push(`/articles/${id}`)}
+          >
+            <h4 className={styles.title}>{title}</h4>
+            <span className={styles.author}>
+              {authorShortModel.firstLastName}
+            </span>
+          </div>
+        ))
+      )}
     </div>
   );
 };

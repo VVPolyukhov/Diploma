@@ -5,14 +5,20 @@ import React from "react";
 import styles from "./index.module.scss";
 import EventsList from "../Events/List";
 import { useGetEventsQuery } from "store/events/api";
+import { useGetArticlesQuery } from "store/articles/api";
 
 interface IProps {}
 const PrivateHome: React.FC<IProps> = () => {
   const { data: events } = useGetEventsQuery({});
+  const { data: articles } = useGetArticlesQuery({});
   return (
     <div className={styles.root}>
-      <CommonTag>Статьи</CommonTag>
-      <ReducedArticlesList />
+      {articles?.result?.length ? (
+        <>
+          <CommonTag>Статьи</CommonTag>
+          <ReducedArticlesList />
+        </>
+      ) : null}
 
       {events?.result?.length ? (
         <>
