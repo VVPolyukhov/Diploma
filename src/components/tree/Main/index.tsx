@@ -4,19 +4,23 @@ import ReducedCoursesList from "components/tree/Courses/Reduced";
 import React from "react";
 import styles from "./index.module.scss";
 import EventsList from "../Events/List";
+import { useGetEventsQuery } from "store/events/api";
 
 interface IProps {}
 const PrivateHome: React.FC<IProps> = () => {
+  const { data: events } = useGetEventsQuery({});
   return (
     <div className={styles.root}>
-      {/* TODO: Collapse antd */}
       <CommonTag>Статьи</CommonTag>
       <ReducedArticlesList />
 
-      <CommonTag>Нетворкинг-мероприятия</CommonTag>
-      <EventsList />
+      {events?.result?.length ? (
+        <>
+          <CommonTag>Нетворкинг-мероприятия</CommonTag>
+          <EventsList />
+        </>
+      ) : null}
 
-      {/* TODO: Collapse antd */}
       <CommonTag>Курсы</CommonTag>
       <ReducedCoursesList />
     </div>
