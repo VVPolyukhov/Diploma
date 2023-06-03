@@ -88,7 +88,11 @@ export const baseQueryWithReauth: BaseQueryFn<
         result = await baseQuery(args, api, extraOptions);
       }
     } else {
-      notification.error({ message: "Произошла непредвиденная ошибка" });
+      if (
+        result.meta?.request.url !== "http://84.252.73.203:8080/api/v1/user"
+      ) {
+        notification.error({ message: "Произошла непредвиденная ошибка" });
+      }
     }
   }
   return result;

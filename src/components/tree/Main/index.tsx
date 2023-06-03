@@ -5,15 +5,18 @@ import React from "react";
 import styles from "./index.module.scss";
 import ReducedEventsList from "../Events/List/Reduced";
 import { useGetEventsQuery } from "store/events/api";
-import { useGetArticlesQuery } from "store/articles/api";
+import { getArticlesList } from "store/articles/selectors";
+import { useSelector } from "react-redux";
 
 interface IProps {}
 const PrivateHome: React.FC<IProps> = () => {
   const { data: events } = useGetEventsQuery({});
-  const { data: articles } = useGetArticlesQuery({});
+
+  const articles = useSelector(getArticlesList);
+
   return (
     <div className={styles.root}>
-      {articles?.result?.length ? (
+      {articles?.length !== 0 ? (
         <>
           <CommonTag>Статьи</CommonTag>
           <ReducedArticlesList />

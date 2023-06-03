@@ -13,7 +13,7 @@ interface IProps {}
 const ArticlesListAdmin: React.FC<IProps> = () => {
   const router = useRouter();
 
-  const { data, isLoading } = useGetArticlesQuery({});
+  const { data, isLoading } = useGetArticlesQuery({ limit: 9999 });
 
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
 

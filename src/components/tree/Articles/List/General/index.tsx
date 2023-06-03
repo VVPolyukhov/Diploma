@@ -10,7 +10,7 @@ interface IProps {}
 const ArticlesGeneralList: React.FC<IProps> = () => {
   const [form] = Form.useForm();
 
-  const { data, isLoading } = useGetArticlesQuery({});
+  const { data, isLoading } = useGetArticlesQuery({ limit: 9999 });
 
   if (isLoading) {
     return <Spinner margin="100px auto" />;

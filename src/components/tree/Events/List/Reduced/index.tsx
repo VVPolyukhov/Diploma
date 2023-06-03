@@ -15,7 +15,8 @@ const ReducedEventsList: React.FC<IProps> = () => {
   return (
     <div className={styles.events}>
       {data?.result.map((item: IEventItem) => {
-        if (item.numberOfAvailableSeats > 0) return <EventsCard {...item} />;
+        if (item.numberOfAvailableSeats > 0)
+          return <EventsCard key={item.id} {...item} />;
         return null;
       })}
     </div>

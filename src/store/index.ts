@@ -2,12 +2,14 @@ import { configureStore } from "@reduxjs/toolkit";
 import { createWrapper } from "next-redux-wrapper";
 import { combineReducers } from "@reduxjs/toolkit";
 import authReducer from "store/auth/slice";
+import articlesReducer from "store/articles/slice";
 import { TAppStore } from "./types";
 import { api } from "./api";
 
 export const rootReducer = combineReducers({
   [api.reducerPath]: api.reducer,
   auth: authReducer,
+  articles: articlesReducer,
 });
 
 export const makeStore = () =>
