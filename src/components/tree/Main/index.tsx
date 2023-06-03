@@ -3,7 +3,7 @@ import ReducedArticlesList from "components/tree/Articles/List/Reduced";
 import ReducedCoursesList from "components/tree/Courses/Reduced";
 import React from "react";
 import styles from "./index.module.scss";
-import EventsList from "../Events/List";
+import ReducedEventsList from "../Events/List/Reduced";
 import { useGetEventsQuery } from "store/events/api";
 import { useGetArticlesQuery } from "store/articles/api";
 
@@ -23,7 +23,7 @@ const PrivateHome: React.FC<IProps> = () => {
       {events?.result?.length ? (
         <>
           <CommonTag>Нетворкинг-мероприятия</CommonTag>
-          <EventsList />
+          <ReducedEventsList />
         </>
       ) : null}
 

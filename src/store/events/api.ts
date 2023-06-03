@@ -2,13 +2,15 @@ import { notification } from "antd";
 import { ROUTES } from "constants/shared/routes";
 import Router from "next/router";
 import { ETagTypes } from "store/api/types";
+import { TObject } from "utils/shared/url";
 import { api } from "../api";
 
 export const eventsApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getEvents: builder.query({
-      query: () => ({
-        url: "networking_event",
+      query: (query: TObject) => ({
+        url: `networking_event`,
+        params: query,
         method: "get",
       }),
       providesTags: [ETagTypes.events],
