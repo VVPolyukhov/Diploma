@@ -7,7 +7,7 @@ import Spinner from "components/shared/Spinner";
 import { TComponentModes } from "constants/shared/components";
 import dayjs from "dayjs";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useCreateEventMutation, useGetEventQuery } from "store/events/api";
 import { convertObjectToFormData } from "utils/shared/formData";
 import styles from "./index.module.scss";
@@ -29,6 +29,11 @@ const AdminEventsItem: React.FC<IProps> = ({ mode = "edit" }) => {
 
   const [createEvent, { isLoading: isCreationLoading }] =
     useCreateEventMutation();
+
+  useEffect(() => {
+    const modifiedStartTime = dayjs(data?.startTime) || null;
+    form.setFieldsValue({ ...data, startTime: modifiedStartTime });
+  }, [data]);
 
   const onFinish = () => {
     let { image, ...values } = form.getFieldsValue();
