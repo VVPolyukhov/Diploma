@@ -37,4 +37,14 @@
 
   .button {
   }
+
+  .articlesTitle {
+    margin-top: 50px;
+    font-weight: 700;
+    color: var(--color-secondary);
+  }
+
+  .articles {
+    align-self: flex-start;
+  }
 }

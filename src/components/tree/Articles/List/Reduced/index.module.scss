@@ -2,12 +2,13 @@
   margin-top: 20px;
   margin-bottom: 30px;
 
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  display: flex;
+  overflow-x: scroll;
   gap: 15px;
 
   .card {
     min-height: 170px;
+    min-width: 300px;
     background: linear-gradient(
       179.93deg,
       rgba(223, 185, 235, 0.65) 0.06%,

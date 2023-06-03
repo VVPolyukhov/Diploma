@@ -4,13 +4,15 @@ import React from "react";
 import { useGetArticlesQuery } from "store/articles/api";
 import styles from "./index.module.scss";
 
-interface IProps {}
-const ReducedArticlesList: React.FC<IProps> = () => {
+interface IProps {
+  className?: string;
+}
+const ReducedArticlesList: React.FC<IProps> = ({ className }) => {
   const router = useRouter();
   const { data, isLoading } = useGetArticlesQuery({});
 
   return (
-    <div className={styles.root}>
+    <div className={`${styles.root} ${className}`}>
       {isLoading ? (
         <Spinner margin="30px auto" />
       ) : (
