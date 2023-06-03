@@ -3,6 +3,7 @@ import React from "react";
 import styles from "./index.module.scss";
 import courseImage from "images/CourseImage.jpg";
 import Button from "components/kit/Button";
+import Link from "next/link";
 
 interface IProps {}
 const CourseItem: React.FC<IProps> = () => {
@@ -18,9 +19,11 @@ const CourseItem: React.FC<IProps> = () => {
             </span>
           </div>
 
-          <Button type="primary" size="large" className={styles.buyButton}>
-            Купить курс
-          </Button>
+          <Link href={"https://payform.ru/dw2btHD/"} target="_blank">
+            <Button type="primary" size="large" className={styles.buyButton}>
+              Купить курс
+            </Button>
+          </Link>
         </div>
         <div className={styles.rightSide}>
           <Image src={courseImage} alt="" fill />
