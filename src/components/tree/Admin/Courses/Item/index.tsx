@@ -8,14 +8,17 @@ import { RcFile } from "antd/es/upload";
 import Button from "components/kit/Button";
 import Header from "components/shared/Header";
 import Spinner from "components/shared/Spinner";
+import { IArticleItem } from "components/tree/Articles/Card";
 import { ICourseChapter } from "components/tree/Courses/Item";
 import { coursesCategoryOptions } from "constants/modules/courses";
 import { TComponentModes } from "constants/shared/components";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import { useGetArticlesQuery } from "store/articles/api";
 import {
   useCreateCourseMutation,
   useGetCourseQuery,
+  useLinkCourseWithArticleMutation,
   useSetImageToCourseMutation,
 } from "store/courses/api";
 import styles from "./index.module.scss";
@@ -34,10 +37,18 @@ const AdminCourseItem: React.FC<IProps> = ({ mode }) => {
       skip: !router.query.id,
     }
   );
+  const { data: articles, isLoading: isArticlesLoading } = useGetArticlesQuery({
+    limit: 9999,
+  });
+  const [linking] = useLinkCourseWithArticleMutation();
 
   useEffect(() => {
     form.setFieldsValue(data);
     data?.image && setFileList([data?.image]);
+    form.setFieldValue(
+      "articles",
+      data?.articleinfoShortForCourseResponseDtos?.map(({ id }: any) => id)
+    );
   }, [data]);
 
   const [createCourse, { isLoading: isCreationLoading }] =
@@ -47,7 +58,7 @@ const AdminCourseItem: React.FC<IProps> = ({ mode }) => {
     useSetImageToCourseMutation();
 
   const onFinish = async () => {
-    const { image, ...values } = form.getFieldsValue();
+    const { articles, image, ...values } = form.getFieldsValue();
     const chapters = ((values.chapters as ICourseChapter[]) || []).map(
       (chapter, indexChapter) => {
         return {
@@ -73,6 +84,13 @@ const AdminCourseItem: React.FC<IProps> = ({ mode }) => {
         const formData = new FormData();
         formData.append("image", fileList[0]);
         setCourseAvatar({ id: resultOfCreation?.id, body: formData });
+
+        articles.forEach((id: string) => {
+          linking({
+            articleId: id,
+            courseId: resultOfCreation?.id,
+          });
+        });
       } catch (error) {
         console.error("Oшибка при создании курса");
       }
@@ -112,7 +130,7 @@ const AdminCourseItem: React.FC<IProps> = ({ mode }) => {
           </Button>
         }
       />
-      {isLoading ? (
+      {isLoading || isArticlesLoading ? (
         <Spinner margin="70px auto" />
       ) : (
         <Form form={form} layout="vertical">
@@ -127,6 +145,17 @@ const AdminCourseItem: React.FC<IProps> = ({ mode }) => {
           </Form.Item>
           <Form.Item required name="linkPayment" label="Ссылка на оплату">
             <Input />
+          </Form.Item>
+          <Form.Item name="articles" label="Статьи">
+            <Select
+              mode="multiple"
+              options={(articles?.result as IArticleItem[])?.map(
+                ({ title, id }) => ({
+                  label: title,
+                  value: id,
+                })
+              )}
+            />
           </Form.Item>
           <Form.Item required label="Обложка" name="image">
             <Upload.Dragger

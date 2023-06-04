@@ -30,6 +30,11 @@ export interface ICourseItem {
   description: string;
   category: string;
   features: string[];
+  articleinfoShortForCourseResponseDtos: {
+    authorShortModel: IAuthorShortModel;
+    id: string;
+    title: string;
+  }[];
 }
 
 interface IProps {}

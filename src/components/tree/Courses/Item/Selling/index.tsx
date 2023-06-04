@@ -1,3 +1,4 @@
+import ArticleCard from "components/tree/Articles/Card";
 import ReducedArticlesList from "components/tree/Articles/List/Reduced";
 import React from "react";
 import { ICourseItem } from "..";
@@ -26,7 +27,15 @@ const SellingCourseItem: React.FC<IProps> = ({ data }) => {
       </section>
 
       <h1 className={styles.useful}>Полезные материалы от автора</h1>
-      <ReducedArticlesList className={styles.articles} />
+      <div className={styles.articles}>
+        {data.articleinfoShortForCourseResponseDtos.map((el, index) => {
+          if (index <= 4) {
+            /* @ts-ignore */
+            return <ArticleCard key={el.id} {...el} />;
+          }
+          return null;
+        })}
+      </div>
     </div>
   );
 };
