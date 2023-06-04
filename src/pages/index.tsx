@@ -1,6 +1,16 @@
 import PublicHome from "components/tree/Home";
+import { getAccessToken } from "utils/storages/local/accessToken";
+import { ROUTES } from "constants/shared/routes";
+import { useRouter } from "next/router";
 
 export default function Home() {
+  const accessToken = getAccessToken();
+  const router = useRouter();
+
+  if (accessToken) {
+    router.push(ROUTES.MAIN.PATHNAME);
+    return null;
+  }
   return <PublicHome />;
 }
 

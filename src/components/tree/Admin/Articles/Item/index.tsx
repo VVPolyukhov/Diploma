@@ -19,25 +19,6 @@ import {
 import RichEditor from "./Editor";
 import styles from "./index.module.scss";
 
-const options = [
-  {
-    value: "Маркетинг",
-    label: "Маркетинг",
-  },
-  {
-    value: "Продукт",
-    label: "Продукт",
-  },
-  {
-    value: "СММ",
-    label: "СММ",
-  },
-  {
-    value: "Продажи",
-    label: "Продажи",
-  },
-];
-
 interface IProps {
   mode: TComponentModes;
 }
@@ -81,16 +62,16 @@ const ArticlesItemAdmin: React.FC<IProps> = ({ mode = "create" }) => {
       textArticle: editorRef?.current?.getContent(),
     };
 
-    let creationResult: any;
+    let createdArticleId: any;
     if (mode === "create") {
-      creationResult = await createArticle(requestData).unwrap();
+      createdArticleId = await createArticle(requestData).unwrap();
     } else {
       editArticle({ ...requestData, id: router.query?.id });
     }
 
-    if (router.query?.id || creationResult?.id) {
+    if (router.query?.id || createdArticleId) {
       linking({
-        articleId: router.query?.id || creationResult?.id,
+        articleId: router.query?.id || createdArticleId,
         courseId,
       });
     }
