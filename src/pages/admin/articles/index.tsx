@@ -2,7 +2,7 @@ import ArticlesListAdmin from 'components/tree/Admin/Articles/List';
 import { NextPage } from 'next';
 
 const ArticlesAdminPage: NextPage = () => {
-  return <ArticlesListAdmin />
+  return <ArticlesListAdmin />;
 }
 
 export default ArticlesAdminPage

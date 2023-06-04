@@ -49,6 +49,23 @@ export const articlesApi = api.injectEndpoints({
         } catch (error) {}
       },
     }),
+    editArticle: builder.mutation({
+      query: (body) => ({
+        url: "article",
+        body,
+        method: "put",
+      }),
+      invalidatesTags: [ETagTypes.articles],
+      onQueryStarted: async (arg, api) => {
+        try {
+          await api.queryFulfilled;
+          Router.push(ROUTES.ADMIN_ARTICLES.PATHNAME);
+          notification.success({
+            message: "Статья изменена",
+          });
+        } catch (error) {}
+      },
+    }),
   }),
 });
 
@@ -57,4 +74,5 @@ export const {
   useLazyGetArticlesQuery,
   useCreateArticleMutation,
   useGetArticleQuery,
+  useEditArticleMutation,
 } = articlesApi;

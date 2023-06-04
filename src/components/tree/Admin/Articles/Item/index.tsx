@@ -1,13 +1,14 @@
 import { Editor } from "@tinymce/tinymce-react";
-import { Form, Input, Select } from "antd";
+import { Form, Input } from "antd";
 import Button from "components/kit/Button";
 import Header from "components/shared/Header";
 import Spinner from "components/shared/Spinner";
 import { TComponentModes } from "constants/shared/components";
 import { useRouter } from "next/router";
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import {
   useCreateArticleMutation,
+  useEditArticleMutation,
   useGetArticleQuery,
 } from "store/articles/api";
 import RichEditor from "./Editor";
@@ -43,12 +44,18 @@ const ArticlesItemAdmin: React.FC<IProps> = ({ mode = "create" }) => {
   const { data, isLoading } = useGetArticleQuery(
     { articleId: router.query?.id },
     {
+      refetchOnMountOrArgChange: true,
       skip: !router.query?.id,
     }
   );
 
   const [createArticle, { isLoading: isCreationLoading }] =
     useCreateArticleMutation();
+  const [editArticle, { isLoading: isEditLoading }] = useEditArticleMutation();
+
+  useEffect(() => {
+    form.setFieldsValue(data);
+  }, [data]);
 
   const onFinish = () => {
     const values = form.getFieldsValue();
@@ -59,6 +66,8 @@ const ArticlesItemAdmin: React.FC<IProps> = ({ mode = "create" }) => {
     };
     if (mode === "create") {
       createArticle(requestData);
+    } else {
+      editArticle({ ...requestData, id: router.query?.id });
     }
   };
 
@@ -68,7 +77,11 @@ const ArticlesItemAdmin: React.FC<IProps> = ({ mode = "create" }) => {
         title={`${mode === "create" ? "Создание" : "Редактирование"} статьи`}
         goBackButton
         additionalContent={
-          <Button type="primary" onClick={onFinish} loading={isCreationLoading}>
+          <Button
+            type="primary"
+            onClick={onFinish}
+            loading={isCreationLoading || isEditLoading}
+          >
             Сохранить
           </Button>
         }
@@ -81,12 +94,16 @@ const ArticlesItemAdmin: React.FC<IProps> = ({ mode = "create" }) => {
             <Form.Item required name="title" label="Заголовок">
               <Input />
             </Form.Item>
-            <Form.Item name="tags" label="Теги">
+            {/* <Form.Item name="tags" label="Теги">
               <Select mode="tags" options={options} />
-            </Form.Item>
+            </Form.Item> */}
           </Form>
 
-          <RichEditor editorRef={editorRef} readonly={true} />
+          <RichEditor
+            editorRef={editorRef}
+            readonly={false}
+            initialValue={data?.textArticle}
+          />
         </>
       )}
     </div>

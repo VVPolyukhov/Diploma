@@ -47,14 +47,14 @@ const ArticlesListAdmin: React.FC<IProps> = () => {
     //   title: "Дата создания",
     //   dataIndex: "creation_date",
     // },
-    {
-      title: "Теги",
-      dataIndex: "tags",
-      render: (values: string[]) =>
-        ["Продажи", "Взаимодействие с клиентами"].map(
-          (e: string, i: number) => <Tag key={i}>{e}</Tag>
-        ),
-    },
+    // {
+    //   title: "Теги",
+    //   dataIndex: "tags",
+    //   render: (values: string[]) =>
+    //     ["Продажи", "Взаимодействие с клиентами"].map(
+    //       (e: string, i: number) => <Tag key={i}>{e}</Tag>
+    //     ),
+    // },
   ];
 
   return (
@@ -83,7 +83,7 @@ const ArticlesListAdmin: React.FC<IProps> = () => {
         <Table
           rowSelection={rowSelection}
           columns={columns}
-          dataSource={data.result}
+          dataSource={data?.result}
           pagination={false}
           onRow={({ id }) => {
             return {
