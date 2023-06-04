@@ -11,9 +11,9 @@ const UsersAdmin: React.FC<IProps> = () => {
   const { data, isLoading } = useGetUsersQuery({});
 
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
+  const [selectedRowKeys, setSelectedRowKeys] = useState<string[]>([]);
 
-  const onSelectChange = (newSelectedRowKeys: React.Key[]) => {
+  const onSelectChange = (newSelectedRowKeys: string[]) => {
     setSelectedRowKeys(newSelectedRowKeys);
   };
 
@@ -69,6 +69,7 @@ const UsersAdmin: React.FC<IProps> = () => {
       <CouresesAppointmentModal
         isModalOpen={isModalOpen}
         setIsModalOpen={setIsModalOpen}
+        selectedRowKeys={selectedRowKeys}
       />
       <Header
         title="Пользователи"
@@ -86,6 +87,8 @@ const UsersAdmin: React.FC<IProps> = () => {
         <Spinner margin="70px auto" />
       ) : (
         <Table
+          rowKey={"id"}
+          // @ts-ignore
           rowSelection={rowSelection}
           columns={columns}
           dataSource={data?.result}

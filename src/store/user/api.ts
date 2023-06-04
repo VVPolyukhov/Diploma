@@ -11,7 +11,14 @@ export const userApi = api.injectEndpoints({
       }),
       providesTags: [ETagTypes.users],
     }),
-
+    assignUserToCourse: builder.mutation({
+      query: (body) => ({
+        url: `admin/assignToCourse`,
+        body,
+        method: "post",
+      }),
+      invalidatesTags: [ETagTypes.users],
+    }),
     getUser: builder.query({
       query: () => ({
         url: `user`,
@@ -71,4 +78,5 @@ export const {
   useGetUserAvatarQuery,
   useGetUserQuery,
   useGetUsersQuery,
+  useAssignUserToCourseMutation,
 } = userApi;
