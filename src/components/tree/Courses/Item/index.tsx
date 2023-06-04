@@ -46,13 +46,13 @@ const CourseItem: React.FC<IProps> = () => {
   );
 
   if (isLoading || !data) {
-    <Spinner margin="200px auto" />;
+    return <Spinner margin="200px auto" />;
   }
 
   if (data?.flagPayment) {
-    return <SellingCourseItem data={data} />;
+    return <ViewingCourseItem data={data} />;
   }
-  return <ViewingCourseItem data={data} />;
+  return <SellingCourseItem data={data} />;
 };
 
 export default CourseItem;

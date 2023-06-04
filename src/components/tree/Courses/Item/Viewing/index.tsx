@@ -16,7 +16,7 @@ const ViewingCourseItem: React.FC<IProps> = ({ data }) => {
       <h1 className={styles.title}>Материалы курса</h1>
 
       <Collapse size="large">
-        {data?.chapters.map(({ id, title, description, topics }) => {
+        {data?.chapters?.map(({ id, title, description, topics }) => {
           return (
             <Panel
               header={

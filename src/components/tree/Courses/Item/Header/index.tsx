@@ -26,7 +26,7 @@ const CourseItemHeader: React.FC<IProps> = ({ data, mode }) => {
           <span className={styles.description}>{data?.description}</span>
         </div>
 
-        {mode === "selling" && (
+        {mode === "selling" && data?.linkPayment && (
           <Link href={data?.linkPayment} target="_blank">
             <Button type="primary" size="large" className={styles.buyButton}>
               Купить курс

@@ -38,12 +38,12 @@ const MainLayout: React.FC<PropsWithChildren<IProps>> = ({ children }) => {
       key: "admin",
       label: "Админ. панель",
       icon: <CrownOutlined />,
-      hidden: !isAdmin,
+      hidden: !isAdmin || data?.email === "user@mail.ru",
       onClick: () => router.push(ROUTES.ADMIN_COURSES.PATHNAME),
     },
     {
       type: "divider",
-      hidden: !isAdmin,
+      hidden: !isAdmin || data?.email === "user@mail.ru",
     },
     {
       key: "logout",
