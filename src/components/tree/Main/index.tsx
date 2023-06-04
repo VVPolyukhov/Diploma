@@ -23,7 +23,7 @@ const PrivateHome: React.FC<IProps> = () => {
         </>
       ) : null}
 
-      {events?.result?.length ? (
+      {events?.result?.length !== 0 ? (
         <>
           <CommonTag>Нетворкинг-мероприятия</CommonTag>
           <ReducedEventsList />

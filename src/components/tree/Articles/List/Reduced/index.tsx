@@ -47,18 +47,24 @@ const ReducedArticlesList: React.FC<IProps> = ({ className }) => {
   return (
     <div className={`${styles.root} ${className}`}>
       {isLoading ? (
-        <Spinner margin="30px auto" />
+        <Spinner margin="60px auto" />
       ) : (
-        articles?.map((item: IArticleItem) => (
-          <ArticleCard key={item.id} {...item} />
-        ))
-      )}
-      {(articles?.length || 0) < (totalCount || 0) && (
-        <Button type="ghost" className={styles.moreButton} onClick={loadMore}>
-          Показать
-          <br />
-          больше
-        </Button>
+        <>
+          {articles?.map((item: IArticleItem) => (
+            <ArticleCard key={item.id} {...item} />
+          ))}
+          {(articles?.length || 0) < (totalCount || 0) && (
+            <Button
+              type="ghost"
+              className={styles.moreButton}
+              onClick={loadMore}
+            >
+              Показать
+              <br />
+              больше
+            </Button>
+          )}
+        </>
       )}
     </div>
   );

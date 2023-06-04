@@ -8,17 +8,17 @@ interface IProps {}
 const ReducedEventsList: React.FC<IProps> = () => {
   const { data, isLoading } = useGetEventsQuery({});
 
-  if (isLoading) {
-    return <Spinner margin="30px auto" />;
-  }
-
   return (
     <div className={styles.events}>
-      {data?.result.map((item: IEventItem) => {
-        if (item.numberOfAvailableSeats > 0)
-          return <EventsCard key={item.id} {...item} />;
-        return null;
-      })}
+      {isLoading ? (
+        <Spinner margin="100px auto" />
+      ) : (
+        data?.result.map((item: IEventItem) => {
+          if (item.numberOfAvailableSeats > 0)
+            return <EventsCard key={item.id} {...item} />;
+          return null;
+        })
+      )}
     </div>
   );
 };

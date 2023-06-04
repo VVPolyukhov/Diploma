@@ -17,6 +17,10 @@
     align-items: center;
     justify-content: space-between;
 
+    &:hover {
+      cursor: pointer;
+    }
+
     .imageWrapper {
       position: relative;
       height: 350px;
