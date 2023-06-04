@@ -8,7 +8,7 @@ interface IProps {
   readonly?: boolean;
 }
 const RichEditor: React.FC<IProps> = ({
-  initialValue = articleTemplate,
+  initialValue = `<p>Напишите статью про что-нибудь интересное</p>`,
   readonly = true,
   editorRef,
 }) => {
@@ -22,6 +22,8 @@ const RichEditor: React.FC<IProps> = ({
     };
   } else {
     initOptions = {
+      selector: "textarea",
+      font_size_formats: "8pt 10pt 12pt 14pt 16pt 18pt 24pt 36pt 48pt",
       plugins: [
         "a11ychecker",
         "advlist",
@@ -48,11 +50,11 @@ const RichEditor: React.FC<IProps> = ({
         "wordcount",
       ],
       toolbar:
-        "undo redo | casechange blocks | bold italic backcolor | " +
+        "undo redo | fontfamily casechange blocks fontsize | bold italic backcolor | " +
         "alignleft aligncenter alignright alignjustify | " +
         "bullist numlist checklist outdent indent | removeformat | a11ycheck code table help",
       content_style:
-        "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+        "body { font-family:Helvetica,Arial,sans-serif; font-size:16px }",
     };
   }
 
