@@ -1,8 +1,10 @@
 import { ROUTES } from "constants/shared/routes";
 import Router from "next/router";
 import { api } from "store/api";
+import { ETagTypes } from "store/api/types";
 import { setRefreshToken } from "utils/storages/cookie/refreshToken";
 import { setAccessToken } from "utils/storages/local/accessToken";
+import { setNeedToGetUser } from "./slice";
 import {
   IAuthBaseRequestParams,
   IAuthBaseResponse,
@@ -22,10 +24,12 @@ export const authApi = api.injectEndpoints({
         try {
           const result = await api.queryFulfilled;
           setRefreshToken(result.data.refreshToken);
-          setAccessToken(result.data.accessToken)
+          setAccessToken(result.data.accessToken);
+          api.dispatch(setNeedToGetUser(true));
           Router.replace(ROUTES.MAIN.PATHNAME);
         } catch (error) {}
       },
+      invalidatesTags: [ETagTypes.users],
     }),
     register: builder.mutation<IAuthBaseResponse, IAuthRegisterRequestParams>({
       query: (body) => ({
@@ -37,10 +41,12 @@ export const authApi = api.injectEndpoints({
         try {
           const result = await api.queryFulfilled;
           setRefreshToken(result.data.refreshToken);
-          setAccessToken(result.data.accessToken)
+          setAccessToken(result.data.accessToken);
+          api.dispatch(setNeedToGetUser(true));
           Router.replace(ROUTES.MAIN.PATHNAME);
         } catch (error) {}
       },
+      invalidatesTags: [ETagTypes.users],
     }),
     updateAccessToken: builder.mutation<
       IAuthBaseResponse,
@@ -55,7 +61,7 @@ export const authApi = api.injectEndpoints({
         try {
           const result = await api.queryFulfilled;
           setRefreshToken(result.data.refreshToken);
-          setAccessToken(result.data.accessToken)
+          setAccessToken(result.data.accessToken);
         } catch (error) {
           Router.replace(ROUTES.AUTH_SIGN_IN.PATHNAME);
         }

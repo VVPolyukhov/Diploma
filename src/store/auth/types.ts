@@ -1,5 +1,6 @@
 export interface IAuthSlice {
   accessToken: string | null;
+  needToGetUser: boolean;
 }
 
 export interface IAuthBaseRequestParams {

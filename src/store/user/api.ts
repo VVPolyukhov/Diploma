@@ -79,4 +79,5 @@ export const {
   useGetUserQuery,
   useGetUsersQuery,
   useAssignUserToCourseMutation,
+  useLazyGetUserQuery,
 } = userApi;
