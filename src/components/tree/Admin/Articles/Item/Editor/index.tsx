@@ -15,7 +15,7 @@ const RichEditor: React.FC<IProps> = ({
   let initOptions = {};
   if (readonly) {
     initOptions = {
-      height: "2000px",
+      height: "calc(100vh - 70px)",
       menubar: false,
       toolbar: false, // Отключение панели инструментов
       readonly: true,
