@@ -50,6 +50,11 @@ const AdminEventsItem: React.FC<IProps> = ({ mode = "edit" }) => {
     return false;
   };
 
+  const removeFile = () => {
+    setFileList([]);
+    return true;
+  };
+
   return (
     <div className={styles.root}>
       <Header
@@ -66,7 +71,7 @@ const AdminEventsItem: React.FC<IProps> = ({ mode = "edit" }) => {
       {isLoading ? (
         <Spinner margin="70px auto" />
       ) : (
-        <Form form={form}>
+        <Form form={form} layout="vertical">
           <Form.Item required name="title" label="Заголовок">
             <Input />
           </Form.Item>
@@ -89,9 +94,9 @@ const AdminEventsItem: React.FC<IProps> = ({ mode = "edit" }) => {
 
           <Form.Item required label="Обложка" name="image">
             <Upload.Dragger
-              showUploadList={false}
               fileList={fileList}
               beforeUpload={uploadHandler}
+              onRemove={removeFile}
             >
               <p className="ant-upload-drag-icon">
                 <InboxOutlined />

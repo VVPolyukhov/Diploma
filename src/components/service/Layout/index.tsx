@@ -36,10 +36,10 @@ const MainLayout: React.FC<PropsWithChildren<IProps>> = ({ children }) => {
     },
     {
       key: "admin",
-      label: "Админка",
+      label: "Админ. панель",
       icon: <CrownOutlined />,
       hidden: !isAdmin,
-      onClick: () => router.push(ROUTES.ADMIN_ARTICLES.PATHNAME),
+      onClick: () => router.push(ROUTES.ADMIN_COURSES.PATHNAME),
     },
     {
       type: "divider",
@@ -63,7 +63,7 @@ const MainLayout: React.FC<PropsWithChildren<IProps>> = ({ children }) => {
           </Link>
           {isAdminPathname && (
             <Tag style={{ marginTop: "5px" }} color="geekblue">
-              Админка
+              Админ. панель
             </Tag>
           )}
         </div>
@@ -72,6 +72,7 @@ const MainLayout: React.FC<PropsWithChildren<IProps>> = ({ children }) => {
             <>
               {isAdminPathname ? (
                 <>
+                  <Link href={ROUTES.ADMIN_COURSES.PATHNAME}>Курсы</Link>
                   <Link href={ROUTES.ADMIN_ARTICLES.PATHNAME}>Статьи</Link>
                   <Link href={ROUTES.ADMIN_EVENTS.PATHNAME}>Нетворкинг</Link>
                   <Link href={ROUTES.ADMIN_USERS.PATHNAME}>Пользователи</Link>

@@ -90,7 +90,7 @@ const ArticlesItemAdmin: React.FC<IProps> = ({ mode = "create" }) => {
         <Spinner margin="70px auto" />
       ) : (
         <>
-          <Form form={form}>
+          <Form form={form} layout="vertical">
             <Form.Item required name="title" label="Заголовок">
               <Input />
             </Form.Item>

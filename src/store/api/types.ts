@@ -3,5 +3,6 @@ export enum ETagTypes {
   events = "events",
   users = "users",
   user = "user",
+  courses = "courses",
 }
 export const rtkQueryTagTypes = Object.values(ETagTypes);

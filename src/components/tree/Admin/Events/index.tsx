@@ -10,7 +10,7 @@ import React, { useState } from "react";
 import { useGetEventsQuery } from "store/events/api";
 import { convertDate } from "utils/shared/date";
 
-interface IAuthorShortModel {
+export interface IAuthorShortModel {
   id: React.Key;
   firstLastName: string;
 }

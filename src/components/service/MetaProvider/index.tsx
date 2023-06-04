@@ -10,7 +10,10 @@ const MetaProvider: React.FC<PropsWithChildren<IProps>> = ({ children }) => {
   return (
     <>
       <Head>
-        <title>{ROUTES_INFO_BY_PATHNAME[router.pathname]?.TITLE}</title>
+        <title>
+          {ROUTES_INFO_BY_PATHNAME[router.pathname]?.TITLE ||
+            `Образовательная платформа "In Course"`}
+        </title>
         <meta name="description" content="Description" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />

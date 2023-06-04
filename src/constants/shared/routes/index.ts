@@ -23,7 +23,9 @@ type TRouteNames =
   | "ADMIN_EVENTS"
   | "ADMIN_EVENTS_CREATE"
   | "MAIN"
-  | "ADMIN_USERS";
+  | "ADMIN_USERS"
+  | "ADMIN_COURSES"
+  | "ADMIN_COURSES_CREATE";
 
 export const ROUTES: Record<TRouteNames, IRoute> = {
   HOME: {
@@ -76,9 +78,19 @@ export const ROUTES: Record<TRouteNames, IRoute> = {
   },
   ADMIN_EVENTS: {
     PATHNAME: "/admin/events",
+    TITLE: "Административная панель | Нетворкинг-мероприятия",
   },
   ADMIN_EVENTS_CREATE: {
     PATHNAME: "/admin/events/create",
+    TITLE: "Административная панель | Создание нетворкинг-мероприятий",
+  },
+  ADMIN_COURSES: {
+    PATHNAME: "/admin/courses",
+    TITLE: "Административная панель | Курсы",
+  },
+  ADMIN_COURSES_CREATE: {
+    PATHNAME: "/admin/courses/create",
+    TITLE: "Административная панель | Создание курсов",
   },
 };
 

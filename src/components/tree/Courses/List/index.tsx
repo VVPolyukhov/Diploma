@@ -5,6 +5,7 @@ import styles from "./index.module.scss";
 import courseImage from "images/CourseImage.jpg";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { coursesCategoryOptions } from "constants/modules/courses";
 
 interface IProps {}
 const CoursesList: React.FC<IProps> = () => {
@@ -20,7 +21,7 @@ const CoursesList: React.FC<IProps> = () => {
       <Header title={"Курсы"} />
       <Form form={form} layout="inline" size="large">
         <Form.Item name="type" label="Категории">
-          <Select style={{ width: "200px" }} />
+          <Select style={{ width: "200px" }} options={coursesCategoryOptions} />
         </Form.Item>
       </Form>
       <div className={styles.list}>

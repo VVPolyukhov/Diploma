@@ -1,0 +1,23 @@
+.root {
+  .formItemList {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 20px;
+
+    .chaptersFormItemList {
+      width: 100%;
+
+      .chaptersLevelInfo {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        gap: 10px;
+
+        * {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
