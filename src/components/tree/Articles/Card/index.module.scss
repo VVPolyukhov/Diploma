@@ -1,6 +1,5 @@
 .card {
-    min-height: 150px;
-    height: fit-content;
+    height: 200px;
     width: 300px;
     background: linear-gradient(
       179.93deg,
@@ -12,7 +11,6 @@
     padding: 10px 16px;
     display: flex;
     flex-direction: column;
-    gap: 50px;
     justify-content: space-between;
 
     &:hover {
