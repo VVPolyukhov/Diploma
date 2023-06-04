@@ -20,7 +20,9 @@ const CourseItemHeader: React.FC<IProps> = ({ data, mode }) => {
       <div className={styles.leftSide}>
         <div>
           <h1 className={styles.title}>{data?.title}</h1>
-          <span className={styles.author}>Автор: Семен Демидов</span>
+          <span className={styles.author}>
+            Автор: {data?.authorShortModel.firstLastName}
+          </span>
           <span className={styles.description}>{data?.description}</span>
         </div>
 
