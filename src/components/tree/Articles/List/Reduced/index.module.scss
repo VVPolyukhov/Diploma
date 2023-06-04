@@ -3,9 +3,14 @@
   margin-bottom: 30px;
 
   display: flex;
-  overflow-x: scroll;
+  overflow-x: auto;
+  white-space: nowrap;
   align-items: center;
   gap: 15px;
+
+  * {
+    white-space: normal;
+  }
 
   .moreButton {
     height: fit-content;

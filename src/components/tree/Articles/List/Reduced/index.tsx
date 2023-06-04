@@ -28,20 +28,20 @@ const ReducedArticlesList: React.FC<IProps> = ({ className }) => {
   const [lazyGetArticles, { isLoading }] = useLazyGetArticlesQuery();
 
   useEffect(() => {
-    lazyGetArticles(pagination);
-
-    return () => {
-      dispatch(clearArticlesSlice());
-    };
+    if ((articles?.length || 0) < (totalCount || 0) || articles === null) {
+      lazyGetArticles(pagination);
+    }
   }, []);
 
   const loadMore = () => {
-    const newPagination = {
-      ...pagination,
-      offset: pagination.limit + pagination.offset,
-    };
-    lazyGetArticles(newPagination);
-    dispatch(setArticlesPagination(newPagination));
+    if ((articles?.length || 0) < (totalCount || 0)) {
+      const newPagination = {
+        ...pagination,
+        offset: pagination.limit + pagination.offset,
+      };
+      lazyGetArticles(newPagination);
+      dispatch(setArticlesPagination(newPagination));
+    }
   };
 
   return (

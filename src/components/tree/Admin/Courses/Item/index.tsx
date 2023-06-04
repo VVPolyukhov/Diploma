@@ -37,6 +37,7 @@ const AdminCourseItem: React.FC<IProps> = ({ mode }) => {
 
   useEffect(() => {
     form.setFieldsValue(data);
+    data?.image && setFileList([data?.image]);
   }, [data]);
 
   const [createCourse, { isLoading: isCreationLoading }] =
@@ -47,7 +48,6 @@ const AdminCourseItem: React.FC<IProps> = ({ mode }) => {
 
   const onFinish = async () => {
     const { image, ...values } = form.getFieldsValue();
-    console.log("values", values);
     const chapters = ((values.chapters as ICourseChapter[]) || []).map(
       (chapter, indexChapter) => {
         return {
@@ -76,7 +76,6 @@ const AdminCourseItem: React.FC<IProps> = ({ mode }) => {
       } catch (error) {
         console.error("Oшибка при создании курса");
       }
-
       // const reader = new FileReader();
       // reader.onload = () => {
       //   const image = (reader.result as string).split(",")[1];

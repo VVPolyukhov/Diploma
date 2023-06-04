@@ -2,9 +2,9 @@
   .list {
     margin-top: 50px;
     display: flex;
-    // display: grid;
-    // grid-template-columns: repeat(4, 1fr);
-    gap: 25px;
+    flex-wrap: wrap;
+    row-gap: 50px;
+    column-gap: 80px;
 
     .item {
       display: flex;

@@ -20,8 +20,11 @@ export const articlesApi = api.injectEndpoints({
           const { data } = await api.queryFulfilled;
           const state = api.getState() as TRootState;
           const prevState = getArticlesList(state);
-          api.dispatch(setArticlesList([...(prevState || []), ...data.result]));
-          api.dispatch(setArticlesTotalCount(data.totalCount));
+          const newData = [...(prevState || []), ...data.result];
+          if (newData.length <= data.totalCount) {
+            api.dispatch(setArticlesList(newData));
+            api.dispatch(setArticlesTotalCount(data.totalCount));
+          }
         } catch (error) {}
       },
       providesTags: [ETagTypes.articles],
