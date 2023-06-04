@@ -61,6 +61,7 @@ const RichEditor: React.FC<IProps> = ({
   return (
     <>
       <Editor
+        disabled={readonly}
         // @ts-ignore
         onInit={(evt, editor) => (editorRef.current = editor)}
         initialValue={initialValue}

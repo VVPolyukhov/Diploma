@@ -45,10 +45,6 @@ const AdminCourseItem: React.FC<IProps> = ({ mode }) => {
   const [setCourseAvatar, { isLoading: isAvatarLoading }] =
     useSetImageToCourseMutation();
 
-  useEffect(() => {
-    form.setFieldsValue({ ...data });
-  }, [data]);
-
   const onFinish = async () => {
     const { image, ...values } = form.getFieldsValue();
     console.log("values", values);
