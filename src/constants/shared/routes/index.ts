@@ -1,3 +1,5 @@
+import { TObject } from "utils/shared/url";
+
 interface IRoute {
   /**
    * Должен начинаться со "/"
@@ -100,4 +102,15 @@ export const PRIVATE_ROUTES = Object.values(ROUTES).filter(
 );
 export const PRIVATE_ROUTE_PATHNAMES = PRIVATE_ROUTES.map(
   ({ PATHNAME }) => PATHNAME
+);
+
+export const ROUTES_INFO_BY_PATHNAME = Object.keys(ROUTES).reduce(
+  (acc, routeName) => {
+    const info: IRoute = ROUTES[routeName as TRouteNames];
+    return {
+      ...acc,
+      [info.PATHNAME]: info,
+    };
+  },
+  {} as TObject<IRoute>
 );

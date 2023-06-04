@@ -10,6 +10,7 @@ import { font } from "styles/font";
 import Head from "next/head";
 import dayjs from "dayjs";
 import "dayjs/locale/ru";
+import MetaProvider from "components/service/MetaProvider";
 dayjs.locale("ru");
 
 /**
@@ -37,13 +38,15 @@ const App: React.FC<AppProps> = ({ Component, ...rest }) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <ReduxProvider store={store}>
-        <ConfigProviderWrapper>
-          <AccessProvider>
-            <Layout>
-              <Component {...props.pageProps} />
-            </Layout>
-          </AccessProvider>
-        </ConfigProviderWrapper>
+        <MetaProvider>
+          <ConfigProviderWrapper>
+            <AccessProvider>
+              <Layout>
+                <Component {...props.pageProps} />
+              </Layout>
+            </AccessProvider>
+          </ConfigProviderWrapper>
+        </MetaProvider>
       </ReduxProvider>
     </div>
   );
