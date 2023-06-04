@@ -3,9 +3,11 @@ import Button from "components/kit/Button";
 import Header from "components/shared/Header";
 import Spinner from "components/shared/Spinner";
 import RichEditor from "components/tree/Admin/Articles/Item/Editor";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { useRef } from "react";
 import { useGetArticleQuery } from "store/articles/api";
+import { IArticleItem } from "../Card";
 import styles from "./index.module.scss";
 
 interface IProps {}
@@ -22,6 +24,9 @@ const Article: React.FC<IProps> = () => {
     }
   );
 
+  const courseInfo = (data as IArticleItem)
+    ?.courseInfoShortForArticleResponseDto?.[0];
+
   if (isLoading || !data) {
     return <Spinner margin="200px auto" />;
   }
@@ -29,15 +34,23 @@ const Article: React.FC<IProps> = () => {
   return (
     <div className={styles.root}>
       <Header title={`Статья: "${data?.title}"`} />
-      <span className={styles.additionalText}>
-        Дополнительный материал для курса &quot;Продажи на высокий чек&quot;
-      </span>
+      {courseInfo && (
+        <span className={styles.additionalText}>
+          Дополнительный материал для курса &quot;{courseInfo.title}&quot;
+        </span>
+      )}
 
       <div className={styles.meta}>
         <h3>Автори статьи: {data?.authorShortModel?.firstLastName}</h3>
-        <Button type="primary" size="large">
-          Перейти к курсу
-        </Button>
+        {courseInfo ? (
+          <Link href={`/courses/${courseInfo.id}`}>
+            <Button type="primary" size="large">
+              Перейти к курсу
+            </Button>
+          </Link>
+        ) : (
+          <div />
+        )}
       </div>
 
       <RichEditor

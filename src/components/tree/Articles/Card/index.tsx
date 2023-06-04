@@ -1,3 +1,4 @@
+import { IAuthorShortModel } from "components/tree/Admin/Events";
 import { useRouter } from "next/router";
 import React from "react";
 import styles from "./index.module.scss";
@@ -9,6 +10,11 @@ export interface IArticleItem {
     id: string;
     firstLastName: string;
   };
+  courseInfoShortForArticleResponseDto: {
+    id: string;
+    title: string;
+    authorShortModel: IAuthorShortModel;
+  }[];
 }
 
 interface IProps extends IArticleItem {}

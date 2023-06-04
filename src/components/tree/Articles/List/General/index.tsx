@@ -15,32 +15,35 @@ const ArticlesGeneralList: React.FC<IProps> = () => {
   if (isLoading) {
     return <Spinner margin="100px auto" />;
   }
-
-  return (
-    <div className={styles.root}>
-      <Header title={"Статьи"} />
-      <Form form={form} layout="inline" size="large">
-        <Form.Item name="authors" label="Авторы">
-          <Select style={{ width: "200px" }} />
-        </Form.Item>
-        <Form.Item name="courses" label="Курсы">
-          <Select style={{ width: "200px" }} />
-        </Form.Item>
-      </Form>
-      <div className={styles.list}>
-        {data?.result?.map((item: IArticleItem) => {
-          return (
-            <div key={item.id}>
-              <ArticleCard {...item} />
+console.log("data", data);
+return (
+  <div className={styles.root}>
+    <Header title={"Статьи"} />
+    {/* <Form form={form} layout="inline" size="large">
+      <Form.Item name="authors" label="Авторы">
+        <Select style={{ width: "200px" }} />
+      </Form.Item>
+      <Form.Item name="courses" label="Курсы">
+        <Select style={{ width: "200px" }} />
+      </Form.Item>
+    </Form> */}
+    <div className={styles.list}>
+      {data?.result?.map((item: IArticleItem) => {
+        const courseInfo = item.courseInfoShortForArticleResponseDto?.[0];
+        return (
+          <div key={item.id}>
+            <ArticleCard {...item} />
+            {courseInfo && (
               <span className={styles.postscript}>
-                Дополнение к курсу ПРОДАЖИ НА ВЫСОТЕ
+                Дополнение к курсу &quot;{courseInfo.title}&quot;
               </span>
-            </div>
-          );
-        })}
-      </div>
+            )}
+          </div>
+        );
+      })}
     </div>
-  );
+  </div>
+);
 };
 
 export default ArticlesGeneralList;

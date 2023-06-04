@@ -1,8 +1,9 @@
 import { Editor } from "@tinymce/tinymce-react";
-import { Form, Input } from "antd";
+import { Form, Input, Select } from "antd";
 import Button from "components/kit/Button";
 import Header from "components/shared/Header";
 import Spinner from "components/shared/Spinner";
+import { ICourseItem } from "components/tree/Courses/Item";
 import { TComponentModes } from "constants/shared/components";
 import { useRouter } from "next/router";
 import React, { useEffect, useRef } from "react";
@@ -11,6 +12,10 @@ import {
   useEditArticleMutation,
   useGetArticleQuery,
 } from "store/articles/api";
+import {
+  useGetCoursesQuery,
+  useLinkCourseWithArticleMutation,
+} from "store/courses/api";
 import RichEditor from "./Editor";
 import styles from "./index.module.scss";
 
@@ -49,25 +54,45 @@ const ArticlesItemAdmin: React.FC<IProps> = ({ mode = "create" }) => {
     }
   );
 
+  const { data: coursesData, isLoading: isCoursesLoading } = useGetCoursesQuery(
+    {
+      limit: 9999,
+    }
+  );
+
   const [createArticle, { isLoading: isCreationLoading }] =
     useCreateArticleMutation();
   const [editArticle, { isLoading: isEditLoading }] = useEditArticleMutation();
+  const [linking] = useLinkCourseWithArticleMutation();
 
   useEffect(() => {
     form.setFieldsValue(data);
+    form.setFieldValue(
+      "courses",
+      data?.courseInfoShortForArticleResponseDto?.[0]?.id
+    );
   }, [data]);
 
-  const onFinish = () => {
-    const values = form.getFieldsValue();
+  const onFinish = async () => {
+    const { courses: courseId, ...values } = form.getFieldsValue();
     const requestData = {
       title: values.title,
       // @ts-ignore
       textArticle: editorRef?.current?.getContent(),
     };
+
+    let creationResult: any;
     if (mode === "create") {
-      createArticle(requestData);
+      creationResult = await createArticle(requestData).unwrap();
     } else {
       editArticle({ ...requestData, id: router.query?.id });
+    }
+
+    if (router.query?.id || creationResult?.id) {
+      linking({
+        articleId: router.query?.id || creationResult?.id,
+        courseId,
+      });
     }
   };
 
@@ -86,7 +111,7 @@ const ArticlesItemAdmin: React.FC<IProps> = ({ mode = "create" }) => {
           </Button>
         }
       />
-      {isLoading ? (
+      {isLoading || isCoursesLoading ? (
         <Spinner margin="70px auto" />
       ) : (
         <>
@@ -94,9 +119,16 @@ const ArticlesItemAdmin: React.FC<IProps> = ({ mode = "create" }) => {
             <Form.Item required name="title" label="Заголовок">
               <Input />
             </Form.Item>
-            {/* <Form.Item name="tags" label="Теги">
-              <Select mode="tags" options={options} />
-            </Form.Item> */}
+            <Form.Item name="courses" label="Курсы">
+              <Select
+                options={(coursesData?.result as ICourseItem[])?.map(
+                  ({ title, id }) => ({
+                    label: title,
+                    value: id,
+                  })
+                )}
+              />
+            </Form.Item>
           </Form>
 
           <RichEditor

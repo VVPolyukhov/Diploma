@@ -29,14 +29,14 @@ const CoursesList: React.FC<IProps> = () => {
         <Spinner margin="200px auto" />
       ) : (
         <>
-          <Form form={form} layout="inline" size="large">
+          {/* <Form form={form} layout="inline" size="large">
             <Form.Item name="type" label="Категории">
               <Select
                 style={{ width: "200px" }}
                 options={coursesCategoryOptions}
               />
             </Form.Item>
-          </Form>
+          </Form> */}
           <div className={styles.list}>
             {(
               data?.result as (ICourseItem & {

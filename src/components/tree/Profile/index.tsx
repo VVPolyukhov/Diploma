@@ -67,8 +67,12 @@ const Profile: React.FC<IProps> = () => {
         </Form.Item>
       </Form>
 
-      <h2 className={styles.articlesTitle}>Статьи от автора</h2>
-      <ReducedArticlesList className={styles.articles} />
+      {data?.email === "author@gmail.com" && (
+        <>
+          <h2 className={styles.articlesTitle}>Статьи от автора</h2>
+          <ReducedArticlesList className={styles.articles} />
+        </>
+      )}
     </div>
   );
 };

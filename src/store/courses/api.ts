@@ -13,6 +13,14 @@ export const eventsApi = api.injectEndpoints({
       }),
       providesTags: [ETagTypes.courses],
     }),
+    linkCourseWithArticle: builder.mutation({
+      query: (params) => ({
+        url: `admin/linkingArticleWithCourse`,
+        params,
+        method: "post",
+      }),
+      invalidatesTags: [ETagTypes.courses, ETagTypes.articles],
+    }),
     getCourse: builder.query({
       query: ({ id }) => ({
         url: `course/${id}`,
@@ -55,4 +63,5 @@ export const {
   useCreateCourseMutation,
   useSetImageToCourseMutation,
   useGetCoursesQuery,
+  useLinkCourseWithArticleMutation,
 } = eventsApi;

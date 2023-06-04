@@ -18,7 +18,7 @@ const GeneralEventsList: React.FC<IProps> = () => {
   return (
     <div className={styles.root}>
       <Header title={"Нетворкинг-мероприятия"} />
-      <Form
+      {/* <Form
         form={form}
         layout="inline"
         size="large"
@@ -51,7 +51,7 @@ const GeneralEventsList: React.FC<IProps> = () => {
         >
           <Checkbox />
         </Form.Item>
-      </Form>
+      </Form> */}
       {isLoading ? (
         <Spinner margin="70px auto" />
       ) : (
