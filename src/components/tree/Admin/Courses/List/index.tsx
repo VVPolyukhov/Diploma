@@ -3,18 +3,18 @@ import { Table } from "antd";
 import Button from "components/kit/Button";
 import Header from "components/shared/Header";
 import Spinner from "components/shared/Spinner";
+import { coursesCategory, TCoursesCategory } from "constants/modules/courses";
 import { ROUTES } from "constants/shared/routes";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
+import { useGetCoursesQuery } from "store/courses/api";
 import { IAuthorShortModel } from "../../Events";
 
 interface IProps {}
 const AdminCoursesList: React.FC<IProps> = () => {
   const router = useRouter();
 
-  const isLoading = false;
-  const data = { result: [] };
-  //   const { data, isLoading } = useGetUsersQuery({});
+  const { data, isLoading } = useGetCoursesQuery({});
 
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
 
@@ -45,6 +45,11 @@ const AdminCoursesList: React.FC<IProps> = () => {
       title: "Автор",
       dataIndex: "authorShortModel",
       render: (value: IAuthorShortModel) => value.firstLastName,
+    },
+    {
+      title: "Категория",
+      dataIndex: "category",
+      render: (value: TCoursesCategory) => coursesCategory[value],
     },
   ];
 

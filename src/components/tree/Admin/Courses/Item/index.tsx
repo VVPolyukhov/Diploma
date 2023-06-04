@@ -8,11 +8,16 @@ import { RcFile } from "antd/es/upload";
 import Button from "components/kit/Button";
 import Header from "components/shared/Header";
 import Spinner from "components/shared/Spinner";
+import { ICourseChapter } from "components/tree/Courses/Item";
 import { coursesCategoryOptions } from "constants/modules/courses";
 import { TComponentModes } from "constants/shared/components";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { useCreateCourseMutation, useGetCourseQuery } from "store/courses/api";
+import {
+  useCreateCourseMutation,
+  useGetCourseQuery,
+  useSetImageToCourseMutation,
+} from "store/courses/api";
 import styles from "./index.module.scss";
 
 interface IProps {
@@ -33,22 +38,52 @@ const AdminCourseItem: React.FC<IProps> = ({ mode }) => {
   const [createCourse, { isLoading: isCreationLoading }] =
     useCreateCourseMutation();
 
+  const [setCourseAvatar, { isLoading: isAvatarLoading }] =
+    useSetImageToCourseMutation();
+
   useEffect(() => {
     form.setFieldsValue({ ...data });
   }, [data]);
 
-  const onFinish = () => {
+  const onFinish = async () => {
     const { image, ...values } = form.getFieldsValue();
     console.log("values", values);
+    const chapters = ((values.chapters as ICourseChapter[]) || []).map(
+      (chapter, indexChapter) => {
+        return {
+          ...chapter,
+          priorityNumberOfTheSectionInTheCourse: indexChapter,
+          topics: (chapter.topics || []).map((topic, indexTopic) => {
+            return {
+              ...topic,
+              priorityNumberOfTheSection: indexTopic,
+            };
+          }),
+        };
+      }
+    );
     if (mode === "create") {
-      const reader = new FileReader();
+      try {
+        const resultOfCreation = await createCourse({
+          ...values,
+          chapters,
+          topics: [],
+        }).unwrap();
+        console.log("resultOfCreation", resultOfCreation);
+        const formData = new FormData();
+        formData.append("image", fileList[0]);
+        setCourseAvatar({ id: resultOfCreation?.id, body: formData });
+      } catch (error) {
+        console.error("Oшибка при создании курса");
+      }
 
-      reader.onload = () => {
-        const image = (reader.result as string).split(",")[1];
-        createCourse({ ...values, image });
-      };
-
-      reader.readAsDataURL(fileList[0]);
+      // const reader = new FileReader();
+      // reader.onload = () => {
+      //   const image = (reader.result as string).split(",")[1];
+      //   createCourse({ ...values, image });
+      // };
+      // reader.readAsDataURL(fileList[0]);
+    } else {
     }
   };
 
@@ -69,7 +104,11 @@ const AdminCourseItem: React.FC<IProps> = ({ mode }) => {
         title={`${mode === "create" ? "Создание" : "Редактирование"} курса`}
         goBackButton
         additionalContent={
-          <Button type="primary" onClick={onFinish} loading={isCreationLoading}>
+          <Button
+            type="primary"
+            onClick={onFinish}
+            loading={isCreationLoading || isAvatarLoading}
+          >
             Сохранить
           </Button>
         }

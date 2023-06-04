@@ -13,6 +13,7 @@ export enum ECoursesCategory {
   producing = "producing",
   sales = "sales",
 }
+export type TCoursesCategory = `${ECoursesCategory}`;
 export const coursesCategory = {
   [ECoursesCategory.producing]: "Продюсирование",
   [ECoursesCategory.sales]: "Продажи",

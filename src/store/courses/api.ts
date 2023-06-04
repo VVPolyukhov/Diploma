@@ -6,6 +6,13 @@ import { api } from "../api";
 
 export const eventsApi = api.injectEndpoints({
   endpoints: (builder) => ({
+    getCourses: builder.query({
+      query: () => ({
+        url: `course`,
+        method: "get",
+      }),
+      providesTags: [ETagTypes.courses],
+    }),
     getCourse: builder.query({
       query: ({ id }) => ({
         url: `course/${id}`,
@@ -29,7 +36,23 @@ export const eventsApi = api.injectEndpoints({
       },
       invalidatesTags: [ETagTypes.courses],
     }),
+    setImageToCourse: builder.mutation({
+      query: ({ id, body }) => {
+        return {
+          url: `course/${id}/avatar`,
+          body,
+          method: "post",
+          formData: true,
+        };
+      },
+      invalidatesTags: [ETagTypes.courses],
+    }),
   }),
 });
 
-export const { useGetCourseQuery, useCreateCourseMutation } = eventsApi;
+export const {
+  useGetCourseQuery,
+  useCreateCourseMutation,
+  useSetImageToCourseMutation,
+  useGetCoursesQuery,
+} = eventsApi;
