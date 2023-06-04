@@ -1,0 +1,50 @@
+.main {
+    margin-bottom: 50px;
+
+    h1 {
+        color: var(--color-secondary);
+      }
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+
+    .leftSide {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      .title {
+        font-size: 40px;
+        font-weight: bold;
+      }
+
+      .author {
+        display: block;
+        margin-top: -16px;
+    margin-bottom: 24px;
+    color: var(--color-primary);
+    font-weight: 500;
+    font-size: 18px;
+      }
+
+      .description {
+        font-style: italic;
+        font-size: 18px;
+      }
+
+      .buyButton {
+        margin-top: 40px;
+        width: 150px;
+      }
+    }
+
+    .rightSide {
+      margin: auto;
+      border-radius: 100px;
+      overflow: hidden;
+      position: relative;
+      width: 600px;
+      height: 400px;
+    }
+  }

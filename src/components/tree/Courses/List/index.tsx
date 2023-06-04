@@ -12,7 +12,7 @@ const CoursesList: React.FC<IProps> = () => {
   const router = useRouter();
 
   const onCourseClick = () => {
-    router.push("/courses/1");
+    router.push("/courses/6596281f-e23b-4326-a29b-a0eba69c4f5e");
   };
 
   return (
