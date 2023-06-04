@@ -35,6 +35,10 @@ const AdminCourseItem: React.FC<IProps> = ({ mode }) => {
     }
   );
 
+  useEffect(() => {
+    form.setFieldsValue(data);
+  }, [data]);
+
   const [createCourse, { isLoading: isCreationLoading }] =
     useCreateCourseMutation();
 

@@ -5,7 +5,7 @@ import Spinner from "components/shared/Spinner";
 import SellingCourseItem from "./Selling";
 import ViewingCourseItem from "./Viewing";
 
-const data: ICourseItem = {
+const mockData: ICourseItem = {
   id: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
   title: "Прогрев, как сериал",
   flagPayment: false,
@@ -75,7 +75,7 @@ interface IProps {}
 const CourseItem: React.FC<IProps> = () => {
   const router = useRouter();
 
-  const { isLoading } = useGetCourseQuery(
+  const { data, isLoading } = useGetCourseQuery(
     {
       id: router?.query?.id,
     },
@@ -84,14 +84,14 @@ const CourseItem: React.FC<IProps> = () => {
     }
   );
   console.log("data", data);
-  if (isLoading || !data) {
+  if (isLoading || !mockData) {
     <Spinner margin="200px auto" />;
   }
 
-  if (data?.flagPayment) {
-    return <SellingCourseItem data={data} />;
+  if (mockData?.flagPayment) {
+    return <SellingCourseItem data={mockData} />;
   }
-  return <ViewingCourseItem data={data} />;
+  return <ViewingCourseItem data={mockData} />;
 };
 
 export default CourseItem;

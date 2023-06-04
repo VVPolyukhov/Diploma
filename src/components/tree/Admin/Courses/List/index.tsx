@@ -81,6 +81,15 @@ const AdminCoursesList: React.FC<IProps> = () => {
           columns={columns}
           dataSource={data?.result}
           pagination={false}
+          onRow={({ id }) => {
+            return {
+              onClick: () => {
+                router.push({
+                  pathname: `/admin/courses/${id}`,
+                });
+              },
+            };
+          }}
         />
       )}
     </>
