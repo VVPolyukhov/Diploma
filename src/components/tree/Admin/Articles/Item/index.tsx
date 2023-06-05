@@ -69,7 +69,7 @@ const ArticlesItemAdmin: React.FC<IProps> = ({ mode = "create" }) => {
       editArticle({ ...requestData, id: router.query?.id });
     }
 
-    if (router.query?.id || createdArticleId) {
+    if ((router.query?.id || createdArticleId) && courseId) {
       linking({
         articleId: router.query?.id || createdArticleId,
         courseId,
