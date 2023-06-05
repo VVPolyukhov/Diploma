@@ -32,12 +32,28 @@ const AdminEventsItem: React.FC<IProps> = ({ mode = "edit" }) => {
 
   useEffect(() => {
     const modifiedStartTime = dayjs(data?.startTime) || null;
-    form.setFieldsValue({ ...data, startTime: modifiedStartTime });
+    const modifiedDurationOfEvent = data?.durationOfEvent
+      ? parseInt(data?.durationOfEvent.split(":")[0])
+      : null;
+    form.setFieldsValue({
+      ...data,
+      startTime: modifiedStartTime,
+      durationOfEvent: modifiedDurationOfEvent,
+    });
+    data?.image && setFileList([data?.image]);
   }, [data]);
 
   const onFinish = () => {
-    let { image, ...values } = form.getFieldsValue();
-    values = { ...values, startTime: dayjs(values.startTime).format() };
+    let { durationOfEvent, image, ...values } = form.getFieldsValue();
+    values = {
+      ...values,
+      startTime: dayjs(values.startTime).format(),
+      durationOfEvent: durationOfEvent
+        ? `${
+            durationOfEvent > 9 ? durationOfEvent : `0${durationOfEvent}`
+          }:00:00`
+        : undefined,
+    };
     if (mode === "create") {
       const formData = convertObjectToFormData(values);
       formData.append("image", fileList[0]);
@@ -83,6 +99,9 @@ const AdminEventsItem: React.FC<IProps> = ({ mode = "edit" }) => {
           </Form.Item>
           <Form.Item required name="startTime" label="Начало мероприятия">
             <DatePicker showTime />
+          </Form.Item>
+          <Form.Item required name="durationOfEvent" label="Длительность">
+            <InputNumber />
           </Form.Item>
           <Form.Item
             required

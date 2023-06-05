@@ -1,6 +1,8 @@
 import Button from "components/kit/Button";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import React from "react";
+import { useRegisterEventMutation } from "store/events/api";
 import { convertDate } from "utils/shared/date";
 import styles from "./index.module.scss";
 
@@ -12,6 +14,9 @@ export interface IEventItem {
   status: TEventsStatuses;
   numberOfAvailableSeats: number;
   maximumNumberOfParticipants: number;
+  durationOfEvent: any;
+  eventSubscriptionFlag: boolean;
+  link: string;
 }
 
 export enum EEventsStatuses {
@@ -30,7 +35,28 @@ const EventsCard: React.FC<IProps> = ({
   maximumNumberOfParticipants,
   numberOfAvailableSeats,
   startTime,
+  eventSubscriptionFlag,
+  link,
 }) => {
+  const router = useRouter();
+
+  let btnText;
+  if (status === "PASSED") {
+    btnText = "Мероприятие прошло";
+  }
+  if (eventSubscriptionFlag) {
+    if (status === "IN_PROCESS") {
+      btnText = "Перейти на мероприятие";
+    }
+    if (status === "TO_BE") {
+      btnText = "Вы уже зарегистрированы";
+    }
+  } else {
+    btnText = "Зарегистрироваться";
+  }
+
+  const [register] = useRegisterEventMutation();
+
   return (
     <div className={styles.event} key={id}>
       <div className={styles.content}>
@@ -43,12 +69,24 @@ const EventsCard: React.FC<IProps> = ({
         </span>
         <div className={styles.target}>
           <Button
-            disabled={status === "PASSED"}
+            disabled={
+              status === "PASSED" ||
+              (eventSubscriptionFlag && status !== "IN_PROCESS")
+            }
             size="large"
             type="primary"
             className={styles.btn}
+            onClick={() => {
+              if (!eventSubscriptionFlag) {
+                register(id);
+              } else {
+                if (status === "IN_PROCESS") {
+                  router.push(link);
+                }
+              }
+            }}
           >
-            {status !== "PASSED" ? "Зарегистрироваться" : "Мероприятие прошло"}
+            {btnText}
           </Button>
           {status !== "PASSED" && (
             <span className={styles.seats}>

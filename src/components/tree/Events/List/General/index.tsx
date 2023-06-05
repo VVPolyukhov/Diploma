@@ -18,7 +18,7 @@ const GeneralEventsList: React.FC<IProps> = () => {
   return (
     <div className={styles.root}>
       <Header title={"Нетворкинг-мероприятия"} />
-      {/* <Form
+      <Form
         form={form}
         layout="inline"
         size="large"
@@ -38,12 +38,12 @@ const GeneralEventsList: React.FC<IProps> = () => {
             ]}
           />
         </Form.Item>
-        <Form.Item name="authors" label="Авторы">
+        {/* <Form.Item name="authors" label="Авторы">
           <Select style={{ width: "200px" }} />
         </Form.Item>
         <Form.Item name="period" label="Период">
           <DatePicker.RangePicker />
-        </Form.Item>
+        </Form.Item> */}
         <Form.Item
           name="eventSubscriptionFlag"
           label="Мои мероприятия"
@@ -51,7 +51,7 @@ const GeneralEventsList: React.FC<IProps> = () => {
         >
           <Checkbox />
         </Form.Item>
-      </Form> */}
+      </Form>
       {isLoading ? (
         <Spinner margin="70px auto" />
       ) : (

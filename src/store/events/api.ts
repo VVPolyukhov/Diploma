@@ -54,10 +54,26 @@ export const eventsApi = api.injectEndpoints({
       },
       invalidatesTags: [ETagTypes.events],
     }),
+    registerEvent: builder.mutation({
+      query: (id) => ({
+        url: `networking_event/${id}/sign_up`,
+        method: "post",
+      }),
+      onQueryStarted: async (arg, api) => {
+        try {
+          await api.queryFulfilled;
+          notification.success({
+            message: "Вы успешно зарегистрировались на мероприятие",
+          });
+        } catch (error) {}
+      },
+      invalidatesTags: [ETagTypes.events],
+    }),
   }),
 });
 
 export const {
+  useRegisterEventMutation,
   useCreateEventMutation,
   useEditEventMutation,
   useGetEventQuery,
