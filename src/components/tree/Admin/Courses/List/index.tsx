@@ -14,7 +14,7 @@ interface IProps {}
 const AdminCoursesList: React.FC<IProps> = () => {
   const router = useRouter();
 
-  const { data, isLoading } = useGetCoursesQuery({});
+  const { data, isLoading } = useGetCoursesQuery({ limit: 9999 });
 
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([]);
 

@@ -7,8 +7,9 @@ import { api } from "../api";
 export const eventsApi = api.injectEndpoints({
   endpoints: (builder) => ({
     getCourses: builder.query({
-      query: () => ({
+      query: (params) => ({
         url: `course`,
+        params,
         method: "get",
       }),
       providesTags: [ETagTypes.courses],
