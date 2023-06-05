@@ -43,8 +43,7 @@ const EventsCard: React.FC<IProps> = ({
   let btnText;
   if (status === "PASSED") {
     btnText = "Мероприятие прошло";
-  }
-  if (eventSubscriptionFlag) {
+  } else if (eventSubscriptionFlag) {
     if (status === "IN_PROCESS") {
       btnText = "Перейти на мероприятие";
     }
